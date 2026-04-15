@@ -1,5 +1,5 @@
 # Stage 1: Android SDK base
-FROM eclipse-temurin:17-jdk-jammy AS builder
+FROM eclipse-temurin:17-jdk-jammy AS sdk-base
 
 ENV ANDROID_HOME=/opt/android-sdk
 ENV PATH="${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/build-tools/34.0.0:${PATH}"
@@ -41,9 +41,11 @@ RUN ARCH="$(uname -m)" && \
     fi
 
 WORKDIR /project
+
+# Stage 2: Build the APK and run tests + lint
+FROM sdk-base AS builder
 COPY . .
 
-# Build the debug APK and run unit tests + lint
 RUN chmod +x gradlew && \
     ./gradlew assembleDebug test lint --no-daemon --stacktrace
 
@@ -52,7 +54,7 @@ RUN mkdir -p /output && \
     cp app/build/outputs/apk/debug/app-debug.apk /output/app-debug.apk && \
     sha256sum /output/app-debug.apk | awk '{print $1}' > /output/app-debug.apk.sha256
 
-# Stage 2: Lightweight server to download the APK
+# Stage 3: Lightweight server to download the APK
 FROM python:3.12-slim
 WORKDIR /serve
 COPY --from=builder /output/ .

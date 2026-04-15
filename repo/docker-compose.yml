@@ -16,6 +16,16 @@ services:
       retries: 3
       start_period: 30s
 
+  test-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: sdk-base
+    volumes:
+      - .:/project
+    working_dir: /project
+    entrypoint: ["./run_tests.sh"]
+
 volumes:
   apk-output:
     driver: local
