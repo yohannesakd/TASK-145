@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.RoadRunner" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#1565C0</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#D1E4FF</item>
+        <item name="colorSecondary">#FF6F00</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSurface">#FAFAFA</item>
+        <item name="colorSurfaceVariant">#F5F5F5</item>
+        <item name="colorError">#D32F2F</item>
+        <item name="colorOnError">#FFFFFF</item>
+    </style>
+</resources>

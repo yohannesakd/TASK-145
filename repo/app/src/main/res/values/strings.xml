@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RoadRunner Console</string>
+
+    <!-- Common -->
+    <string name="loading">Loading…</string>
+    <string name="empty_state_generic">No items found</string>
+    <string name="error_label">Error</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+    <string name="assign">Assign</string>
+
+    <!-- Task List -->
+    <string name="task_list_title">Tasks</string>
+    <string name="tab_all">All</string>
+    <string name="tab_open">Open</string>
+    <string name="tab_assigned">Assigned</string>
+    <string name="tab_in_progress">In Progress</string>
+    <string name="tab_completed">Completed</string>
+    <string name="fab_create_task">Create Task</string>
+    <string name="empty_tasks">No tasks found</string>
+
+    <!-- Task Detail -->
+    <string name="task_detail_title">Task Detail</string>
+    <string name="label_assigned_worker">Assigned Worker</string>
+    <string name="label_ranked_workers">Ranked Workers</string>
+    <string name="btn_claim_task">Claim Task</string>
+    <string name="btn_start_task">Start Task</string>
+    <string name="btn_complete_task">Mark Complete</string>
+    <string name="label_zone">Zone</string>
+    <string name="label_time_window">Time Window</string>
+    <string name="label_priority">Priority</string>
+    <string name="label_description">Description</string>
+    <string name="label_status">Status</string>
+    <string name="label_actions">Actions</string>
+    <string name="label_reputation">Reputation</string>
+    <string name="label_workload">Workload</string>
+    <string name="label_match_score">Match Score</string>
+
+    <!-- Create Task Dialog -->
+    <string name="dialog_create_task_title">New Task</string>
+    <string name="hint_task_title">Title</string>
+    <string name="hint_task_description">Description</string>
+    <string name="hint_priority">Priority (number)</string>
+    <string name="hint_window_start">Window Start</string>
+    <string name="hint_window_end">Window End</string>
+    <string name="label_mode">Mode</string>
+    <string name="mode_grab_order">Grab Order</string>
+    <string name="mode_assigned">Assigned</string>
+
+    <!-- Zone -->
+    <string name="zone_list_title">Zones</string>
+    <string name="fab_add_zone">Add Zone</string>
+    <string name="empty_zones">No zones configured</string>
+    <string name="dialog_create_zone_title">New Zone</string>
+    <string name="hint_zone_name">Zone Name</string>
+    <string name="hint_zone_score">Score (1–5)</string>
+    <string name="hint_zone_description">Description (optional)</string>
+    <string name="label_score">Score</string>
+
+    <!-- Employer List -->
+    <string name="employer_list_title">Employers</string>
+    <string name="fab_add_employer">Add Employer</string>
+    <string name="empty_employers">No employers found</string>
+    <string name="chip_all">All</string>
+    <string name="chip_pending">Pending</string>
+    <string name="chip_verified">Verified</string>
+    <string name="chip_suspended">Suspended</string>
+    <string name="label_warnings">Warnings</string>
+    <string name="label_throttled">Throttled</string>
+
+    <!-- Employer Detail -->
+    <string name="employer_detail_title">Employer Detail</string>
+    <string name="hint_legal_name">Legal Name</string>
+    <string name="hint_ein">EIN (XX-XXXXXXX)</string>
+    <string name="hint_street_address">Street Address</string>
+    <string name="hint_city">City</string>
+    <string name="hint_state">State (2-letter code)</string>
+    <string name="hint_zip">ZIP Code (12345 or 12345-6789)</string>
+    <string name="btn_verify_save">Verify &amp; Save</string>
+    <string name="label_warning_count">Warning Count: %d</string>
+    <string name="label_suspended_until">Suspended Until: %s</string>
+
+    <!-- Case List -->
+    <string name="case_list_title">Compliance Cases</string>
+    <string name="fab_open_case">Open Case</string>
+    <string name="empty_cases">No cases found</string>
+    <string name="tab_under_review">Under Review</string>
+    <string name="tab_resolved">Resolved</string>
+
+    <!-- Case Detail -->
+    <string name="case_detail_title">Case Detail</string>
+    <string name="label_case_type">Case Type</string>
+    <string name="label_severity">Severity</string>
+    <string name="label_linked_employer">Linked Employer</string>
+    <string name="label_reports">Reports</string>
+    <string name="label_audit_log">Audit Log</string>
+    <string name="btn_issue_warning">Issue Warning</string>
+    <string name="btn_suspend_7d">Suspend 7 Days</string>
+    <string name="btn_suspend_30d">Suspend 30 Days</string>
+    <string name="btn_suspend_365d">Suspend 365 Days</string>
+    <string name="btn_takedown">Takedown</string>
+    <string name="btn_throttle">Throttle</string>
+    <string name="label_zero_tolerance">Zero-tolerance content</string>
+    <string name="label_created_by">Created by</string>
+    <string name="label_assigned_to">Assigned to</string>
+    <string name="label_created_date">Created</string>
+
+    <!-- Report -->
+    <string name="report_title">File Report</string>
+    <string name="hint_target_type">Target Type</string>
+    <string name="hint_target_id">Target ID</string>
+    <string name="hint_description">Description</string>
+    <string name="btn_attach_evidence">Attach Evidence</string>
+    <string name="btn_file_report">File Report</string>
+    <string name="label_evidence_hash">SHA-256: %s</string>
+    <string name="label_attached_file">Attached: %s</string>
+
+    <!-- Dashboards -->
+    <string name="dashboard_admin_title">Admin Dashboard</string>
+    <string name="dashboard_dispatcher_title">Dispatcher Dashboard</string>
+    <string name="dashboard_worker_title">Worker Dashboard</string>
+    <string name="dashboard_compliance_title">Compliance Dashboard</string>
+    <string name="card_products">Products</string>
+    <string name="card_orders">Orders</string>
+    <string name="card_users">Users</string>
+    <string name="card_employers">Employers</string>
+    <string name="card_open_tasks">Open Tasks</string>
+    <string name="card_active_workers">Active Workers</string>
+    <string name="card_zones">Zones</string>
+    <string name="card_available_tasks">Available Tasks</string>
+    <string name="card_my_tasks">My Active Tasks</string>
+    <string name="card_open_cases">Open Cases</string>
+    <string name="card_pending_employers">Pending Employers</string>
+    <string name="card_reports">Reports</string>
+    <string name="card_catalog">Product Catalog</string>
+    <string name="label_reputation_score">Reputation Score</string>
+    <string name="label_tap_to_view">Tap to view</string>
+    <string name="label_orders">Orders</string>
+    <string name="no_orders">No orders found</string>
+
+    <!-- Admin Config -->
+    <string name="config_title">Configuration</string>
+    <string name="card_config">Configuration</string>
+    <string name="config_shipping_templates">Shipping Templates</string>
+    <string name="config_discount_rules">Discount Rules</string>
+    <string name="config_matching_weights">Matching Weights</string>
+    <string name="config_products">Products</string>
+    <string name="config_add_product">Add Product</string>
+    <string name="config_add_shipping">Add Shipping Template</string>
+    <string name="config_add_discount">Add Discount Rule</string>
+    <string name="config_weight_time">Time Window Weight</string>
+    <string name="config_weight_load">Workload Weight</string>
+    <string name="config_weight_rep">Reputation Weight</string>
+    <string name="config_weight_zone">Zone Weight</string>
+</resources>

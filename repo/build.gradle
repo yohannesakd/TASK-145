@@ -1,0 +1,12 @@
+plugins {
+    id 'com.android.application' version '8.3.2' apply false
+}
+
+def externalBuildRoot = providers.gradleProperty('roadRunnerBuildRoot').orNull
+
+if (externalBuildRoot) {
+    allprojects {
+        def relativeProjectPath = project.path == ':' ? 'root' : project.path.substring(1).replace(':', '/')
+        layout.buildDirectory.set(file("${externalBuildRoot}/${relativeProjectPath}"))
+    }
+}

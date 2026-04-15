@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_sm"
+    app:cardCornerRadius="@dimen/corner_radius_md"
+    app:cardElevation="@dimen/card_elevation">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_md">
+
+        <!-- Product name -->
+        <TextView
+            android:id="@+id/text_item_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/btn_remove"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Remove button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_remove"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:paddingHorizontal="@dimen/spacing_xs"
+            app:icon="@android:drawable/ic_menu_delete"
+            app:iconTint="@color/colorError"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Unit price -->
+        <TextView
+            android:id="@+id/text_unit_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="@color/grey_600"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_item_name" />
+
+        <!-- Quantity controls -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_decrease"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="-"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_unit_price" />
+
+        <TextView
+            android:id="@+id/text_quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_sm"
+            android:layout_marginEnd="@dimen/spacing_sm"
+            android:minWidth="32dp"
+            android:gravity="center"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="@color/black"
+            app:layout_constraintBaseline_toBaselineOf="@id/btn_decrease"
+            app:layout_constraintStart_toEndOf="@id/btn_decrease" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_increase"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:padding="0dp"
+            android:text="+"
+            android:textSize="16sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/btn_decrease"
+            app:layout_constraintStart_toEndOf="@id/text_quantity" />
+
+        <!-- Line total -->
+        <TextView
+            android:id="@+id/text_line_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceTitleSmall"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBaseline_toBaselineOf="@id/btn_decrease"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!-- Conflict icon -->
+        <ImageView
+            android:id="@+id/icon_conflict"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:src="@android:drawable/ic_dialog_alert"
+            app:tint="@android:color/holo_orange_dark"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_decrease" />
+
+        <!-- Conflict description text -->
+        <TextView
+            android:id="@+id/text_conflict"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="@color/amber_800"
+            android:visibility="gone"
+            app:layout_constraintEnd_toStartOf="@id/btn_resolve"
+            app:layout_constraintStart_toEndOf="@id/icon_conflict"
+            app:layout_constraintTop_toBottomOf="@id/btn_decrease" />
+
+        <!-- Resolve button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_resolve"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_sm"
+            android:text="Resolve"
+            android:textAllCaps="false"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_decrease" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

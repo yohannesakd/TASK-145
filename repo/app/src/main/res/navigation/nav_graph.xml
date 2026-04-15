@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- ── Auth ──────────────────────────────────────────────────────────── -->
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.roadrunner.dispatch.presentation.auth.LoginFragment"
+        android:label="Login">
+
+        <action
+            android:id="@+id/action_login_to_admin"
+            app:destination="@id/adminDashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_login_to_dispatcher"
+            app:destination="@id/dispatcherDashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_login_to_worker"
+            app:destination="@id/workerDashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_login_to_compliance"
+            app:destination="@id/complianceDashboardFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- ── Role dashboards ───────────────────────────────────────────────── -->
+
+    <fragment
+        android:id="@+id/adminDashboardFragment"
+        android:name="com.roadrunner.dispatch.presentation.admin.AdminDashboardFragment"
+        android:label="Admin Dashboard">
+
+        <action
+            android:id="@+id/action_admin_to_catalog"
+            app:destination="@id/catalogFragment" />
+
+        <action
+            android:id="@+id/action_admin_to_employers"
+            app:destination="@id/employerListFragment" />
+
+        <action
+            android:id="@+id/action_admin_to_orders"
+            app:destination="@id/orderListFragment" />
+
+        <action
+            android:id="@+id/action_admin_to_config"
+            app:destination="@id/adminConfigFragment" />
+
+        <action
+            android:id="@+id/action_admin_to_import_export"
+            app:destination="@id/importExportFragment" />
+
+        <action
+            android:id="@+id/action_admin_to_users"
+            app:destination="@id/userManagementFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderListFragment"
+        android:name="com.roadrunner.dispatch.presentation.admin.OrderListFragment"
+        android:label="Orders">
+
+        <argument
+            android:name="orgId"
+            android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/dispatcherDashboardFragment"
+        android:name="com.roadrunner.dispatch.presentation.dispatch.DispatcherDashboardFragment"
+        android:label="Dispatcher Dashboard">
+
+        <argument
+            android:name="org_id"
+            android:defaultValue="" />
+
+        <argument
+            android:name="user_id"
+            android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_dispatcher_to_tasks"
+            app:destination="@id/taskListFragment" />
+
+        <action
+            android:id="@+id/action_dispatcher_to_zones"
+            app:destination="@id/zoneFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/workerDashboardFragment"
+        android:name="com.roadrunner.dispatch.presentation.dispatch.WorkerDashboardFragment"
+        android:label="Worker Dashboard">
+
+        <argument
+            android:name="org_id"
+            android:defaultValue="" />
+
+        <argument
+            android:name="user_id"
+            android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_worker_to_tasks"
+            app:destination="@id/taskListFragment" />
+
+        <action
+            android:id="@+id/action_worker_to_catalog"
+            app:destination="@id/catalogFragment" />
+
+        <action
+            android:id="@+id/action_worker_to_reports"
+            app:destination="@id/reportFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/complianceDashboardFragment"
+        android:name="com.roadrunner.dispatch.presentation.compliance.ComplianceDashboardFragment"
+        android:label="Compliance Dashboard">
+
+        <argument
+            android:name="org_id"
+            android:defaultValue="" />
+
+        <argument
+            android:name="reviewer_id"
+            android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_compliance_to_cases"
+            app:destination="@id/caseListFragment" />
+
+        <action
+            android:id="@+id/action_compliance_to_employers"
+            app:destination="@id/employerListFragment" />
+
+        <action
+            android:id="@+id/action_compliance_to_reports"
+            app:destination="@id/reportFragment" />
+
+        <action
+            android:id="@+id/action_compliance_to_tasks"
+            app:destination="@id/taskListFragment" />
+
+        <action
+            android:id="@+id/action_compliance_to_orders"
+            app:destination="@id/orderListFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/adminConfigFragment"
+        android:name="com.roadrunner.dispatch.presentation.admin.AdminConfigFragment"
+        android:label="Configuration" />
+
+    <fragment
+        android:id="@+id/userManagementFragment"
+        android:name="com.roadrunner.dispatch.presentation.admin.UserManagementFragment"
+        android:label="User Management" />
+
+    <fragment
+        android:id="@+id/importExportFragment"
+        android:name="com.roadrunner.dispatch.presentation.admin.ImportExportFragment"
+        android:label="Import / Export" />
+
+    <!-- ── Dispatch flow ────────────────────────────────────────────────── -->
+
+    <fragment
+        android:id="@+id/taskListFragment"
+        android:name="com.roadrunner.dispatch.presentation.dispatch.tasklist.TaskListFragment"
+        android:label="Tasks">
+
+        <action
+            android:id="@+id/action_tasks_to_detail"
+            app:destination="@id/taskDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="com.roadrunner.dispatch.presentation.dispatch.taskdetail.TaskDetailFragment"
+        android:label="Task Detail">
+
+        <argument android:name="task_id" android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/zoneFragment"
+        android:name="com.roadrunner.dispatch.presentation.dispatch.zone.ZoneFragment"
+        android:label="Zones" />
+
+    <!-- ── Compliance flow ───────────────────────────────────────────────── -->
+
+    <fragment
+        android:id="@+id/employerListFragment"
+        android:name="com.roadrunner.dispatch.presentation.compliance.employer.EmployerListFragment"
+        android:label="Employers">
+
+        <action
+            android:id="@+id/action_employers_to_detail"
+            app:destination="@id/employerDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/employerDetailFragment"
+        android:name="com.roadrunner.dispatch.presentation.compliance.employer.EmployerDetailFragment"
+        android:label="Employer Detail">
+
+        <argument android:name="employer_id" android:defaultValue="" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/caseListFragment"
+        android:name="com.roadrunner.dispatch.presentation.compliance.cases.CaseListFragment"
+        android:label="Cases">
+
+        <action
+            android:id="@+id/action_cases_to_detail"
+            app:destination="@id/caseDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/caseDetailFragment"
+        android:name="com.roadrunner.dispatch.presentation.compliance.cases.CaseDetailFragment"
+        android:label="Case Detail">
+
+        <argument android:name="case_id" android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_case_detail_to_report"
+            app:destination="@id/reportFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.roadrunner.dispatch.presentation.compliance.reports.ReportFragment"
+        android:label="Reports">
+
+        <argument android:name="case_id" android:defaultValue="" />
+    </fragment>
+
+    <!-- ── Commerce flow ─────────────────────────────────────────────────── -->
+
+    <fragment
+        android:id="@+id/catalogFragment"
+        android:name="com.roadrunner.dispatch.presentation.commerce.catalog.CatalogFragment"
+        android:label="Product Catalog">
+
+        <action
+            android:id="@+id/action_catalog_to_cart"
+            app:destination="@id/cartFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.roadrunner.dispatch.presentation.commerce.cart.CartFragment"
+        android:label="Cart">
+
+        <!-- Incoming arguments from CatalogFragment -->
+        <argument android:name="customerId"  android:defaultValue="" />
+        <argument android:name="storeId"     android:defaultValue="" />
+        <argument android:name="productId"   android:defaultValue="" />
+        <argument android:name="orgId"       android:defaultValue="" />
+        <argument android:name="userId"      android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_cart_to_checkout"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="com.roadrunner.dispatch.presentation.commerce.checkout.CheckoutFragment"
+        android:label="Checkout">
+
+        <argument android:name="cartId" android:defaultValue="" />
+
+        <action
+            android:id="@+id/action_checkout_to_invoice"
+            app:destination="@id/invoiceFragment"
+            app:popUpTo="@id/catalogFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/invoiceFragment"
+        android:name="com.roadrunner.dispatch.presentation.commerce.checkout.InvoiceFragment"
+        android:label="Invoice">
+
+        <argument android:name="orderId" android:defaultValue="" />
+    </fragment>
+
+</navigation>

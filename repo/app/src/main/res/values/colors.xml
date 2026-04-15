@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Theme colors -->
+    <color name="colorPrimary">#1565C0</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorPrimaryContainer">#D1E4FF</color>
+    <color name="colorSecondary">#FF6F00</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorSurface">#FAFAFA</color>
+    <color name="colorSurfaceVariant">#F5F5F5</color>
+    <color name="colorError">#D32F2F</color>
+    <color name="colorOnError">#FFFFFF</color>
+    <color name="error">#D32F2F</color>
+
+    <!-- Semantic palette -->
+    <color name="blue_800">#1565C0</color>
+    <color name="blue_100">#D1E4FF</color>
+    <color name="amber_800">#FF6F00</color>
+    <color name="grey_50">#FAFAFA</color>
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_200">#EEEEEE</color>
+    <color name="grey_600">#757575</color>
+    <color name="red_700">#D32F2F</color>
+    <color name="green_700">#388E3C</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Status chip colors -->
+    <color name="status_open">#388E3C</color>
+    <color name="status_open_container">#C8E6C9</color>
+    <color name="status_assigned">#1565C0</color>
+    <color name="status_assigned_container">#D1E4FF</color>
+    <color name="status_in_progress">#FF6F00</color>
+    <color name="status_in_progress_container">#FFE0B2</color>
+    <color name="status_completed">#757575</color>
+    <color name="status_completed_container">#EEEEEE</color>
+
+    <!-- Compliance status colors -->
+    <color name="status_pending">#FF6F00</color>
+    <color name="status_pending_container">#FFE0B2</color>
+    <color name="status_verified">#388E3C</color>
+    <color name="status_verified_container">#C8E6C9</color>
+    <color name="status_suspended">#D32F2F</color>
+    <color name="status_suspended_container">#FFCDD2</color>
+    <color name="status_deactivated">#757575</color>
+    <color name="status_deactivated_container">#EEEEEE</color>
+
+    <!-- Severity colors -->
+    <color name="severity_low">#388E3C</color>
+    <color name="severity_low_container">#C8E6C9</color>
+    <color name="severity_medium">#FF6F00</color>
+    <color name="severity_medium_container">#FFE0B2</color>
+    <color name="severity_high">#D32F2F</color>
+    <color name="severity_high_container">#FFCDD2</color>
+    <color name="severity_critical">#880E4F</color>
+    <color name="severity_critical_container">#FCE4EC</color>
+
+    <!-- Miscellaneous -->
+    <color name="amber_100">#FFE0B2</color>
+    <color name="green_100">#C8E6C9</color>
+    <color name="red_100">#FFCDD2</color>
+    <color name="blue_700">#1976D2</color>
+    <color name="text_secondary">#757575</color>
+    <color name="divider">#E0E0E0</color>
+    <color name="warning_badge">#FF6F00</color>
+    <color name="throttled_indicator">#D32F2F</color>
+</resources>

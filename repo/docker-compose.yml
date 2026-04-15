@@ -1,0 +1,21 @@
+services:
+  builder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: roadrunner-console:latest
+    container_name: roadrunner-console
+    ports:
+      - "8000:8000"
+    volumes:
+      - apk-output:/serve
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/app-debug.apk"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+
+volumes:
+  apk-output:
+    driver: local
