@@ -89,6 +89,7 @@ public class AppBootstrapTest {
         assertNotNull("EnforceViolationUseCase", sl.getEnforceViolationUseCase());
         assertNotNull("FileReportUseCase", sl.getFileReportUseCase());
         assertNotNull("OpenCaseUseCase", sl.getOpenCaseUseCase());
+        assertNotNull("CreateProductUseCase", sl.getCreateProductUseCase());
         assertNotNull("CreateShippingTemplateUseCase", sl.getCreateShippingTemplateUseCase());
         assertNotNull("CreateDiscountRuleUseCase", sl.getCreateDiscountRuleUseCase());
         assertNotNull("CreateZoneUseCase", sl.getCreateZoneUseCase());

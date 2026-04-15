@@ -31,6 +31,7 @@ import com.roadrunner.dispatch.core.domain.usecase.ResolveCartConflictUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.ScanContentUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.ValidateDiscountsUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.CreateDiscountRuleUseCase;
+import com.roadrunner.dispatch.core.domain.usecase.CreateProductUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.CreateShippingTemplateUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.CreateZoneUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.VerifyEmployerUseCase;
@@ -265,6 +266,10 @@ public class ServiceLocator {
 
     public VerifyEmployerUseCase getVerifyEmployerUseCase() {
         return new VerifyEmployerUseCase(getEmployerRepository());
+    }
+
+    public CreateProductUseCase getCreateProductUseCase() {
+        return new CreateProductUseCase(getProductRepository());
     }
 
     public CreateShippingTemplateUseCase getCreateShippingTemplateUseCase() {

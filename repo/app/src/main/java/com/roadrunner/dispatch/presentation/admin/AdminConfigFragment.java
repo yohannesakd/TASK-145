@@ -186,8 +186,9 @@ public class AdminConfigFragment extends Fragment {
                                 imageUri
                         );
 
+                        String role = ServiceLocator.getInstance().getSessionManager().getRole();
                         Executors.newSingleThreadExecutor().execute(() ->
-                                ServiceLocator.getInstance().getProductRepository().insert(product));
+                                ServiceLocator.getInstance().getCreateProductUseCase().execute(product, role));
                     } catch (NumberFormatException ignored) {}
                 })
                 .setNegativeButton(R.string.cancel, null)

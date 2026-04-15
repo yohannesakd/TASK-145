@@ -22,6 +22,7 @@ import com.roadrunner.dispatch.core.domain.model.ShippingTemplate;
 import com.roadrunner.dispatch.core.domain.model.Result;
 import com.roadrunner.dispatch.core.domain.model.Zone;
 import com.roadrunner.dispatch.core.domain.usecase.CreateDiscountRuleUseCase;
+import com.roadrunner.dispatch.core.domain.usecase.CreateProductUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.CreateShippingTemplateUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.CreateZoneUseCase;
 import com.roadrunner.dispatch.core.domain.usecase.VerifyEmployerUseCase;
@@ -340,39 +341,34 @@ public class ImportExportFragment extends Fragment {
         int totalImported = 0;
         int totalSkipped = 0;
 
-        // Import products (with validation)
+        // Import products (via domain use case with role-aware authorization)
+        String actorRole = sl.getSessionManager().getRole();
         JSONArray productsArray = root.optJSONArray("products");
         if (productsArray != null) {
+            CreateProductUseCase createProductUseCase = sl.getCreateProductUseCase();
             for (int i = 0; i < productsArray.length(); i++) {
                 try {
                     JSONObject obj = productsArray.getJSONObject(i);
-                    String name = obj.optString("name", "").trim();
-                    long unitPriceCents = obj.optLong("unitPriceCents", -1);
-                    double taxRate = obj.optDouble("taxRate", 0.0);
-                    String status = obj.optString("status", "ACTIVE");
-
-                    if (name.isEmpty()) { totalSkipped++; continue; }
-                    if (unitPriceCents < 0) { totalSkipped++; continue; }
-                    if (taxRate < 0.0 || taxRate > 1.0) { totalSkipped++; continue; }
-                    if (!"ACTIVE".equals(status) && !"INACTIVE".equals(status)
-                            && !"DISCONTINUED".equals(status)) { totalSkipped++; continue; }
-
                     Product p = new Product(
                             obj.optString("id", null),
                             orgId,
-                            name,
+                            obj.optString("name", "").trim(),
                             obj.optString("brand", ""),
                             obj.optString("series", ""),
                             obj.optString("model", ""),
                             obj.optString("description", ""),
-                            unitPriceCents,
-                            taxRate,
+                            obj.optLong("unitPriceCents", -1),
+                            obj.optDouble("taxRate", 0.0),
                             obj.optBoolean("regulated", false),
-                            status,
+                            obj.optString("status", "ACTIVE"),
                             obj.isNull("imageUri") ? null : obj.optString("imageUri", null)
                     );
-                    sl.getProductRepository().insert(p);
-                    totalImported++;
+                    Result<Product> result = createProductUseCase.execute(p, actorRole);
+                    if (result.isSuccess()) {
+                        totalImported++;
+                    } else {
+                        totalSkipped++;
+                    }
                 } catch (JSONException | RuntimeException ignored) {
                     totalSkipped++;
                 }

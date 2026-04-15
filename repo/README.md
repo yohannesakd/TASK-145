@@ -17,32 +17,24 @@ No server, no web UI, no remote database. All data persists locally using Room (
 
 ## Run, Access, Verify, and Test
 
-This is the single canonical workflow. Docker handles building and JVM testing. A connected Android device or emulator handles the APK install, manual verification, and instrumented tests.
-
 ### Prerequisites
 
-- Docker and Docker Compose
+- JDK 17–21
+- Android SDK 34 (with `ANDROID_HOME` set)
 - An Android emulator (API 26+) or physical device with USB debugging enabled
 - `adb` on the host PATH (included with Android SDK Platform-Tools)
 
-> **Without Docker:** If you prefer a fully local build, install JDK 17–21 and Android SDK 34, then substitute `./gradlew assembleDebug` for the Docker build step and `./gradlew test` for the Docker test step. All other steps remain the same.
-
-### Step 1: Build the APK (Docker)
+### Step 1: Build the APK
 
 ```bash
-docker compose up builder
-# After build completes, the APK is served at:
-#   http://localhost:8000/app-debug.apk
+./gradlew assembleDebug
+# APK output: app/build/outputs/apk/debug/app-debug.apk
 ```
 
 ### Step 2: Install and launch
 
 ```bash
-# Download the APK from the Docker builder
-curl -o app-debug.apk http://localhost:8000/app-debug.apk
-
-# Install and launch (device or emulator must be connected)
-adb install app-debug.apk
+adb install app/build/outputs/apk/debug/app-debug.apk
 adb shell am start -n com.roadrunner.dispatch/.MainActivity
 ```
 
@@ -77,36 +69,34 @@ After launch, the app opens to the **Login** screen. Use one of the seeded crede
 ### Step 4: Run all tests
 
 ```bash
-# Single command: JVM tests + lint (Docker) → instrumented tests (device, auto-detected)
+# Single command: JVM unit tests + lint + instrumented tests
 ./run_tests.sh
 ```
 
 Or run each tier individually:
 
 ```bash
-docker compose run test-runner              # JVM unit tests + lint (Docker)
+./gradlew test                              # JVM unit tests
+./gradlew lint                              # Lint checks
 ./gradlew connectedDebugAndroidTest         # Instrumented tests (device/emulator)
 ```
+
+Use `--jvm-only` to skip the device-dependent instrumented tier:
+
+```bash
+./run_tests.sh --jvm-only
+```
+
+By default, `./run_tests.sh` exits non-zero if no device/emulator is connected. Use `--jvm-only` to explicitly skip instrumented tests when no device is available.
 
 ### What runs where
 
 | Scope | Environment | Command |
 |-------|------------|---------|
-| APK build | Docker | `docker compose up builder` |
-| JVM unit tests (342 cases) | Docker | `docker compose run test-runner` |
-| Lint | Docker | included in test-runner |
-| Instrumented tests (335 cases) | Host device/emulator | `./gradlew connectedDebugAndroidTest` |
-
-Docker provides JDK + Android SDK for building and JVM testing. Instrumented tests (Espresso UI, Room integration, ViewModel integration) require a real Android runtime and cannot run inside Docker containers. `./run_tests.sh` handles this split automatically.
-
-> **Docker containment limitation:** Android instrumented tests (Espresso, Room integration, ViewModel integration) cannot run inside Docker containers — they require a real Android runtime (device or emulator on the host). Docker is used exclusively for JVM unit tests, lint, and APK builds. Use `./run_tests.sh --full` to enforce that instrumented tests must run (exits non-zero if no device is connected).
-
-### Docker Services
-
-| Service | Purpose |
-|---------|---------|
-| `builder` | Builds the debug APK inside a containerized Android SDK, runs JVM tests and lint, then serves the APK via HTTP on port 8000 |
-| `test-runner` | Mounts the project and executes `./run_tests.sh` (JVM unit tests + lint) |
+| APK build | Host | `./gradlew assembleDebug` |
+| JVM unit tests (354 cases) | Host (JVM) | `./gradlew test` |
+| Lint | Host (JVM) | `./gradlew lint` |
+| Instrumented tests (335 cases) | Device/emulator | `./gradlew connectedDebugAndroidTest` |
 
 ---
 
@@ -114,7 +104,7 @@ Docker provides JDK + Android SDK for building and JVM testing. Instrumented tes
 
 ### Test Inventory
 
-24 JVM test files (**342 test cases**) + 44 androidTest files (**335 instrumented tests**).
+25 JVM test files (**354 test cases**) + 44 androidTest files (**335 instrumented tests**).
 
 > **Maintenance note:** Run `./count_tests.sh` to regenerate current counts from source. This script scans `@Test` annotations and is the single source of truth for the numbers above.
 
@@ -146,6 +136,7 @@ Docker provides JDK + Android SDK for building and JVM testing. Instrumented tes
 | CreateDiscountRuleUseCaseTest | 9 | Rule creation, validation, role enforcement |
 | CreateShippingTemplateUseCaseTest | 8 | Template creation, validation, role enforcement |
 | CreateZoneUseCaseTest | 8 | Zone creation, duplicate names, role enforcement |
+| CreateProductUseCaseTest | 12 | Product creation, validation (name, price, tax rate, status), role enforcement, regulated products |
 
 #### Instrumented Android Tests
 
@@ -188,7 +179,7 @@ Docker provides JDK + Android SDK for building and JVM testing. Instrumented tes
 | TaskDetailViewModelTest | 7 | Load task, nonexistent task error, accept task, non-worker start error, LiveData accessors |
 | EmployerViewModelTest | 7 | Verify employer, invalid EIN error, wrong role, clean scan, flagged scan, LiveData accessors |
 | ComplianceCaseViewModelTest | 8 | Open case, wrong role error, enforce warning, wrong role enforce, LiveData accessors |
-| AppBootstrapTest | 18 | ServiceLocator init, session manager, database, all 12 repositories, all 20 use cases, singleton, DB open, RoadRunnerApp singleton, MainActivity launch, seed data verification (4 users, templates, zones, products, discount rule) |
+| AppBootstrapTest | 18 | ServiceLocator init, session manager, database, all 12 repositories, all 21 use cases, singleton, DB open, RoadRunnerApp singleton, MainActivity launch, seed data verification (4 users, templates, zones, products, discount rule) |
 | LoginFragmentTest | 3 | Login form display, empty-field error, text input acceptance |
 | AdminFragmentTest | 10 | AdminDashboard cards + denial, AdminConfig sections + denial, ImportExport buttons + denial, UserManagement list + denial, OrderList recycler + denial |
 | CommerceFragmentTest | 9 | Catalog product list + search + denial, Cart layout + denial, Checkout buttons + denial, Invoice layout + denial |
@@ -222,7 +213,7 @@ Clean Architecture (Onion) with three layers:
 |--------|------|---------|
 | Domain Models | `core/domain/model/` | 23 pure Java POJOs (no Android deps) |
 | Repository Interfaces | `core/domain/repository/` | 12 port interfaces |
-| Use Cases | `core/domain/usecase/` | 20 business logic classes |
+| Use Cases | `core/domain/usecase/` | 21 business logic classes |
 | Validation | `core/util/` | PasswordHasher, AppLogger |
 | Room Entities | `infrastructure/db/entity/` | 19 @Entity classes with indexes |
 | Room DAOs | `infrastructure/db/dao/` | 19 @Dao interfaces |
@@ -302,5 +293,5 @@ On first launch:
 - Database: Room 2.6.0 (SQLite)
 - UI: Material Design 3, ConstraintLayout, Navigation Component
 - Security: AndroidX Security Crypto 1.1.0-alpha06
-- Build dependencies: Docker + Docker Compose (provides JDK + Android SDK); or JDK 17–21 + Android SDK 34 for local builds
-- Runtime dependencies: Android device/emulator with API 26+ and `adb` on the host PATH (for APK install, manual verification, and instrumented tests)
+- Build: JDK 17–21, Android SDK 34
+- Runtime: Android device/emulator with API 26+, `adb` on the host PATH
