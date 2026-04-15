@@ -1,20 +1,18 @@
 package com.roadrunner.dispatch;
 
-import org.junit.Test;
+import com.roadrunner.dispatch.presentation.common.RoleGuard;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 /**
  * Tests documenting which roles each fragment/route authorizes.
- * While the actual RoleGuard relies on Android SessionManager, this test
- * validates the authorization logic (role matching) at the unit level
- * and serves as an executable specification of the authorization matrix.
  *
- * Each test mirrors the RoleGuard.hasRole(...) check in the corresponding fragment.
+ * <p>Every assertion delegates to {@link RoleGuard#matchesRole(String, String...)} so
+ * the test exercises the same matching logic used in production. The full
+ * Android-dependent path ({@link RoleGuard#hasRole(String...)}) is covered by
+ * the instrumented {@code RoleGuardTest} in {@code androidTest}.
  */
 public class RouteAuthorizationTest {
 
@@ -164,51 +162,45 @@ public class RouteAuthorizationTest {
     @Test
     public void nullRole_alwaysDenied() {
         String[] allowed = {"ADMIN", "DISPATCHER", "WORKER", "COMPLIANCE_REVIEWER"};
-        assertFalse(hasRole(null, allowed));
+        assertFalse(RoleGuard.matchesRole(null, allowed));
     }
 
     @Test
     public void emptyRole_alwaysDenied() {
         String[] allowed = {"ADMIN", "DISPATCHER", "WORKER", "COMPLIANCE_REVIEWER"};
-        assertFalse(hasRole("", allowed));
+        assertFalse(RoleGuard.matchesRole("", allowed));
     }
 
     @Test
     public void unknownRole_alwaysDenied() {
         String[] allowed = {"ADMIN"};
-        assertFalse(hasRole("SUPER_ADMIN", allowed));
-        assertFalse(hasRole("admin", allowed)); // case sensitive
+        assertFalse(RoleGuard.matchesRole("SUPER_ADMIN", allowed));
+        assertFalse(RoleGuard.matchesRole("admin", allowed)); // case sensitive
     }
 
     @Test
     public void caseSensitive_rolesMustMatch() {
         String[] allowed = {"ADMIN"};
-        assertFalse(hasRole("Admin", allowed));
-        assertFalse(hasRole("admin", allowed));
-        assertTrue(hasRole("ADMIN", allowed));
+        assertFalse(RoleGuard.matchesRole("Admin", allowed));
+        assertFalse(RoleGuard.matchesRole("admin", allowed));
+        assertTrue(RoleGuard.matchesRole("ADMIN", allowed));
     }
 
     // -----------------------------------------------------------------------
-    // Helper: mirrors RoleGuard.hasRole logic without Android dependency
+    // Helpers — delegate to RoleGuard.matchesRole (production code)
     // -----------------------------------------------------------------------
-
-    private static boolean hasRole(String currentRole, String... allowedRoles) {
-        if (currentRole == null || currentRole.isEmpty()) return false;
-        for (String role : allowedRoles) {
-            if (currentRole.equals(role)) return true;
-        }
-        return false;
-    }
 
     private static void assertAllowed(String[] allowedRoles, String... rolesToTest) {
         for (String role : rolesToTest) {
-            assertTrue("Role " + role + " should be allowed", hasRole(role, allowedRoles));
+            assertTrue("Role " + role + " should be allowed",
+                    RoleGuard.matchesRole(role, allowedRoles));
         }
     }
 
     private static void assertDenied(String[] allowedRoles, String... rolesToTest) {
         for (String role : rolesToTest) {
-            assertFalse("Role " + role + " should be denied", hasRole(role, allowedRoles));
+            assertFalse("Role " + role + " should be denied",
+                    RoleGuard.matchesRole(role, allowedRoles));
         }
     }
 }

@@ -16,6 +16,15 @@ public final class RoleGuard {
      */
     public static boolean hasRole(String... allowedRoles) {
         String currentRole = ServiceLocator.getInstance().getSessionManager().getRole();
+        return matchesRole(currentRole, allowedRoles);
+    }
+
+    /**
+     * Returns true if {@code currentRole} matches any of the {@code allowedRoles}.
+     * Extracted so unit tests can invoke the matching logic directly without
+     * requiring a live SessionManager or ServiceLocator.
+     */
+    public static boolean matchesRole(String currentRole, String... allowedRoles) {
         if (currentRole == null || currentRole.isEmpty()) return false;
         for (String role : allowedRoles) {
             if (currentRole.equals(role)) return true;

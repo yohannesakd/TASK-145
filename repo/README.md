@@ -1,5 +1,7 @@
 # RoadRunner Dispatch & Commerce Console
 
+**Project Type:** Android (offline-first, single-APK)
+
 ## Overview
 
 Standalone, offline-first Android application for field dispatch operations and commerce management. A single APK serves four user roles:
@@ -11,35 +13,112 @@ Standalone, offline-first Android application for field dispatch operations and 
 
 No server, no web UI, no remote database. All data persists locally using Room (SQLite) with encrypted-at-rest storage for sensitive data.
 
-## Prerequisites
+---
 
-- Android Studio + JDK 17–21 + Android SDK 34
+## Run, Access, Verify, and Test
 
-## Quick Start
+This is the single canonical workflow. Docker handles building and JVM testing. A connected Android device or emulator handles the APK install, manual verification, and instrumented tests.
+
+### Prerequisites
+
+- Docker and Docker Compose
+- An Android emulator (API 26+) or physical device with USB debugging enabled
+- `adb` on the host PATH (included with Android SDK Platform-Tools)
+
+> **Without Docker:** If you prefer a fully local build, install JDK 17–21 and Android SDK 34, then substitute `./gradlew assembleDebug` for the Docker build step and `./gradlew test` for the Docker test step. All other steps remain the same.
+
+### Step 1: Build the APK (Docker)
 
 ```bash
-./gradlew assembleDebug
-# APK output: app/build/outputs/apk/debug/app-debug.apk
+docker compose up builder
+# After build completes, the APK is served at:
+#   http://localhost:8000/app-debug.apk
 ```
 
-## Testing
+### Step 2: Install and launch
 
 ```bash
+# Download the APK from the Docker builder
+curl -o app-debug.apk http://localhost:8000/app-debug.apk
+
+# Install and launch (device or emulator must be connected)
+adb install app-debug.apk
+adb shell am start -n com.roadrunner.dispatch/.MainActivity
+```
+
+### Step 3: Verify (manual)
+
+After launch, the app opens to the **Login** screen. Use one of the seeded credentials to access each role-specific dashboard:
+
+**Administrator flow:**
+1. Log in as `admin` / `Admin12345678`
+2. Confirm the Admin Dashboard appears
+3. Navigate to Catalog — verify products are listed
+4. Navigate to User Management — verify the seeded users appear
+
+**Dispatcher flow:**
+1. Log in as `dispatcher` / `Dispatcher1234`
+2. Confirm the Dispatcher Dashboard appears
+3. Navigate to Tasks — create a new task with a zone
+4. Confirm the task appears in the task list
+
+**Worker flow:**
+1. Log in as `worker` / `Worker12345678`
+2. Confirm the Worker Dashboard appears
+3. Navigate to Catalog — add an item to cart
+4. Proceed to Checkout and confirm order creation
+
+**Compliance Reviewer flow:**
+1. Log in as `reviewer` / `Reviewer1234`
+2. Confirm the Compliance Dashboard appears
+3. Navigate to Employers — verify seeded employer data
+4. Open Cases — create a case and confirm it is listed
+
+### Step 4: Run all tests
+
+```bash
+# Single command: JVM tests + lint (Docker) → instrumented tests (device, auto-detected)
 ./run_tests.sh
 ```
 
-This runs:
-1. JVM unit tests (`./gradlew test`) — covers domain logic, validation rules, business invariants
-2. Lint checks (`./gradlew lint`)
+Or run each tier individually:
 
-Instrumented tests (Room integration + auth + navigation) require a connected device or emulator:
 ```bash
-./gradlew connectedDebugAndroidTest
+docker compose run test-runner              # JVM unit tests + lint (Docker)
+./gradlew connectedDebugAndroidTest         # Instrumented tests (device/emulator)
 ```
 
-### Test Coverage
+### What runs where
 
-21 JVM unit test files (**298 test cases**) + 6 androidTest files (**48 instrumented tests**).
+| Scope | Environment | Command |
+|-------|------------|---------|
+| APK build | Docker | `docker compose up builder` |
+| JVM unit tests (342 cases) | Docker | `docker compose run test-runner` |
+| Lint | Docker | included in test-runner |
+| Instrumented tests (335 cases) | Host device/emulator | `./gradlew connectedDebugAndroidTest` |
+
+Docker provides JDK + Android SDK for building and JVM testing. Instrumented tests (Espresso UI, Room integration, ViewModel integration) require a real Android runtime and cannot run inside Docker containers. `./run_tests.sh` handles this split automatically.
+
+> **Docker containment limitation:** Android instrumented tests (Espresso, Room integration, ViewModel integration) cannot run inside Docker containers — they require a real Android runtime (device or emulator on the host). Docker is used exclusively for JVM unit tests, lint, and APK builds. Use `./run_tests.sh --full` to enforce that instrumented tests must run (exits non-zero if no device is connected).
+
+### Docker Services
+
+| Service | Purpose |
+|---------|---------|
+| `builder` | Builds the debug APK inside a containerized Android SDK, runs JVM tests and lint, then serves the APK via HTTP on port 8000 |
+| `test-runner` | Mounts the project and executes `./run_tests.sh` (JVM unit tests + lint) |
+
+---
+
+## Testing
+
+### Test Inventory
+
+24 JVM test files (**342 test cases**) + 44 androidTest files (**335 instrumented tests**).
+
+> **Maintenance note:** Run `./count_tests.sh` to regenerate current counts from source. This script scans `@Test` annotations and is the single source of truth for the numbers above.
+
+#### JVM Unit Tests
 
 | Test Class | Cases | Coverage |
 |------------|-------|----------|
@@ -49,21 +128,75 @@ Instrumented tests (Room integration + auth + navigation) require a connected de
 | LoginUseCaseTest | 13 | 5-attempt lockout, 15-min expiry, credential safety, deactivation |
 | VerifyEmployerUseCaseTest | 18 | EIN XX-XXXXXXX format, state code, ZIP, role validation |
 | ScanContentUseCaseTest | 15 | Sensitive words, zero-tolerance priority, whole-word \\b boundary, case insensitivity |
-| EnforceViolationUseCaseTest | 24 | 2-warning policy, zero-tolerance bypass, all actions, audit log, **role rejection** |
-| AcceptTaskUseCaseTest | 16 | Mutex, duplicate prevention, status checks, workload, mode guards, **role rejection**, cross-org rejection |
-| CreateTaskUseCaseTest | 20 | Validation, zone existence, mode validation, multi-error, content scan (ZERO_TOLERANCE + FLAGGED), **role rejection** |
-| FinalizeCheckoutUseCaseTest | 20 | DRAFT check, staleness, regulated notes, content scan (ZERO_TOLERANCE + FLAGGED), discount propagation, consistency, **role rejection** |
+| EnforceViolationUseCaseTest | 24 | 2-warning policy, zero-tolerance bypass, all actions, audit log, role rejection |
+| AcceptTaskUseCaseTest | 16 | Mutex, duplicate prevention, status checks, workload, mode guards, role rejection, cross-org |
+| CreateTaskUseCaseTest | 20 | Validation, zone existence, mode validation, multi-error, content scan, role rejection |
+| FinalizeCheckoutUseCaseTest | 20 | DRAFT check, staleness, regulated notes, content scan, discount propagation, consistency, role rejection |
 | MatchTasksUseCaseTest | 10 | Weighted scoring, zone proximity, GRAB_ORDER + ASSIGNED modes |
 | PasswordHasherTest | 16 | PBKDF2 correctness, salt uniqueness, length validation, case sensitivity |
-| CompleteTaskUseCaseTest | 11 | Status transition, workload decrement, reputation event, fresh score computation, **role rejection** |
+| CompleteTaskUseCaseTest | 11 | Status transition, workload decrement, reputation event, fresh score computation, role rejection |
 | CreateOrderFromCartUseCaseTest | 12 | Conflict resolution, item enrichment, empty cart rejection |
 | RegisterUserUseCaseTest | 7 | Hash verification, duplicate checking, validation |
 | ResolveCartConflictUseCaseTest | 6 | Conflict flag clearing, price selection, arbitrary price rejection |
 | FileReportUseCaseTest | 19 | Evidence URI/hash storage, role validation, org isolation |
-| OpenCaseUseCaseTest | 11 | Case creation, audit logging, employer validation, **role rejection** (ADMIN + WORKER + DISPATCHER) |
+| OpenCaseUseCaseTest | 11 | Case creation, audit logging, employer validation, role rejection |
 | AppLoggerMaskTest | 10 | ID masking, null/short/UUID truncation, no PII leakage |
-| ImportValidationTest | 14 | SHA-256 fingerprint, employer EIN/state/ZIP validation, duplicate detection, **role rejection** |
-| RouteAuthorizationTest | 21 | Fragment-level role matrix for all 16 routes, null/empty/unknown role denial |
+| ImportValidationTest | 14 | SHA-256 fingerprint, employer EIN/state/ZIP validation, duplicate detection, role rejection |
+| RouteAuthorizationTest | 21 | Fragment-level role matrix for all 16 routes — delegates to production RoleGuard.matchesRole() |
+| CreateDiscountRuleUseCaseTest | 9 | Rule creation, validation, role enforcement |
+| CreateShippingTemplateUseCaseTest | 8 | Template creation, validation, role enforcement |
+| CreateZoneUseCaseTest | 8 | Zone creation, duplicate names, role enforcement |
+
+#### Instrumented Android Tests
+
+| Test Class | Cases | Coverage |
+|------------|-------|----------|
+| SessionManagerTest | 11 | EncryptedSharedPreferences session lifecycle, all 4 roles, field persistence |
+| NavigationArgumentTest | 8 | Bundle key propagation across all nav flows (employer, case, cart, checkout, task) |
+| TaskRepositoryImplTest | 8 | Atomic claim/complete with side effects, rollback on conflict, org scoping |
+| OrderRepositoryImplTest | 6 | Finalize atomicity, cart-to-order pipeline, org isolation |
+| ComplianceCaseRepositoryImplTest | 6 | Insert + audit log atomicity, duplicate rejection, status update |
+| EmployerRepositoryImplTest | 9 | Update + audit log atomicity, suspension, throttle toggle, EIN + org scoping |
+| RoleGuardTest | 14 | Production RoleGuard.hasRole() with real SessionManager for all 4 roles + edge cases |
+| UserRepositoryImplTest | 7 | Insert, find by username/id, auth info, lockout, duplicate prevention |
+| WorkerRepositoryImplTest | 9 | Insert, org scoping, workload adjust, reputation score, status filter, update |
+| CartRepositoryImplTest | 11 | Cart creation, active cart lookup, item CRUD, conflict count, delete |
+| ProductRepositoryImplTest | 5 | Insert, org scoping, active filter, update, regulated flag |
+| ReportRepositoryImplTest | 6 | File report, org scoping, status update, optional fields, evidence preservation |
+| ZoneRepositoryImplTest | 6 | Insert, org scoping, list filter, update, null description |
+| AuditLogRepositoryImplTest | 5 | Insert-only logging, multiple entries, duplicate rejection, null caseId |
+| SensitiveWordRepositoryImplTest | 6 | Add/list, zero-tolerance filter, remove, empty repo |
+| LoginViewModelTest | 7 | Session state checks, logout, invalid credential error, ViewModel wiring |
+| CheckoutViewModelTest | 4 | Create order from cart, order items loading, empty cart error, stale warning |
+| LoginFlowIntegrationTest | 8 | Full register → login → session per role, invalid creds, lockout, logout |
+| CommerceFlowIntegrationTest | 4 | Catalog → cart → checkout → finalize, cart isolation, cart merging, org isolation |
+| DispatchFlowIntegrationTest | 5 | Full create → claim → complete, role checks, org boundary, duplicate prevention |
+| TaskListViewModelTest | 7 | Task creation via ViewModel, content scanning (clean + flagged), my-tasks loading, LiveData accessors |
+| ReportViewModelTest | 6 | Report filing, case linking, unauthorized role rejection, worker filing, LiveData accessors |
+| ComplianceFlowIntegrationTest | 10 | Employer verify, case creation, report filing, enforcement, full compliance flow |
+| DiscountRuleDaoTest | 7 | Insert, find by ID+org, update, active filter, batch find, org isolation, duplicate rejection |
+| ShippingTemplateDaoTest | 6 | Insert, list by org, find by ID, org isolation, upsert (REPLACE), pickup flag |
+| ReputationEventDaoTest | 7 | Insert, recent events, average score, limit, worker filter, duplicate rejection, nullable fields |
+| TaskAcceptanceDaoTest | 6 | Insert, get by task, find by task+worker, multiple acceptances, duplicate rejection, empty result |
+| OrderDiscountDaoTest | 5 | Insert, get by order, multiple discounts, delete by order, duplicate composite key |
+| OrderItemDaoTest | 6 | Insert, insertAll, delete by order, empty result, regulated flag, duplicate rejection |
+| CartItemDaoTest | 9 | Insert, find by cart+product, update, delete, conflict count, empty cart, duplicate rejection |
+| CatalogViewModelTest | 6 | Product loading, lazy init, search, null/empty query reset, error LiveData |
+| CartViewModelTest | 6 | Add to cart, invalid product error, cart items, conflicts, loaded cart, error LiveData |
+| UserManagementViewModelTest | 5 | Registration success, short password, duplicate username, zone ID, LiveData accessor |
+| ZoneViewModelTest | 7 | Create zone, empty name error, invalid score, score too high, update, empty name update, LiveData |
+| TaskDetailViewModelTest | 7 | Load task, nonexistent task error, accept task, non-worker start error, LiveData accessors |
+| EmployerViewModelTest | 7 | Verify employer, invalid EIN error, wrong role, clean scan, flagged scan, LiveData accessors |
+| ComplianceCaseViewModelTest | 8 | Open case, wrong role error, enforce warning, wrong role enforce, LiveData accessors |
+| AppBootstrapTest | 18 | ServiceLocator init, session manager, database, all 12 repositories, all 20 use cases, singleton, DB open, RoadRunnerApp singleton, MainActivity launch, seed data verification (4 users, templates, zones, products, discount rule) |
+| LoginFragmentTest | 3 | Login form display, empty-field error, text input acceptance |
+| AdminFragmentTest | 10 | AdminDashboard cards + denial, AdminConfig sections + denial, ImportExport buttons + denial, UserManagement list + denial, OrderList recycler + denial |
+| CommerceFragmentTest | 9 | Catalog product list + search + denial, Cart layout + denial, Checkout buttons + denial, Invoice layout + denial |
+| DispatchFragmentTest | 10 | DispatcherDashboard cards + dual-role + denial, WorkerDashboard cards + denial, TaskList dispatcher + worker, TaskDetail layout, Zone list + denial |
+| ComplianceFragmentTest | 15 | ComplianceDashboard cards + admin + denial, EmployerList + denial, EmployerDetail form + denial, CaseList + admin-denied + worker-denied, CaseDetail + denial, Report form + worker-allowed + denial |
+| UiJourneyTest | 9 | Admin login→dashboard→catalog, admin→users, dispatcher→tasks, dispatcher→zones, worker→tasks, compliance→employers, compliance→cases, invalid credentials error, empty credentials error |
+
+---
 
 ## Architecture
 
@@ -169,3 +302,5 @@ On first launch:
 - Database: Room 2.6.0 (SQLite)
 - UI: Material Design 3, ConstraintLayout, Navigation Component
 - Security: AndroidX Security Crypto 1.1.0-alpha06
+- Build dependencies: Docker + Docker Compose (provides JDK + Android SDK); or JDK 17–21 + Android SDK 34 for local builds
+- Runtime dependencies: Android device/emulator with API 26+ and `adb` on the host PATH (for APK install, manual verification, and instrumented tests)
