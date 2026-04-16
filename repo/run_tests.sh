@@ -78,6 +78,9 @@ if [ -z "$SDK_DIR" ] && [ -n "${ANDROID_SDK_ROOT:-}" ]; then
     SDK_DIR="$ANDROID_SDK_ROOT"
 fi
 if [ -z "$SDK_DIR" ]; then
+    SDK_DIR="/opt/android-sdk"
+fi
+if [ ! -d "$SDK_DIR" ]; then
     for candidate in /opt/android-sdk /opt/android/sdk /usr/local/android-sdk /usr/lib/android-sdk; do
         if [ -d "$candidate" ]; then
             SDK_DIR="$candidate"
@@ -86,7 +89,7 @@ if [ -z "$SDK_DIR" ]; then
     done
 fi
 
-if [ -n "$SDK_DIR" ]; then
+if [ -n "$SDK_DIR" ] && [ -d "$SDK_DIR" ]; then
     export ANDROID_HOME="$SDK_DIR"
     export ANDROID_SDK_ROOT="$SDK_DIR"
     echo "sdk.dir=${SDK_DIR}" > local.properties
