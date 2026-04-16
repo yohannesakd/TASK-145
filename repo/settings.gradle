@@ -13,5 +13,30 @@ dependencyResolutionManagement {
     }
 }
 
+def ensureAndroidSdkProperties() {
+    File localPropsFile = file("local.properties")
+    if (localPropsFile.exists()) {
+        return
+    }
+
+    List<String> sdkCandidates = [
+        System.getenv("ANDROID_HOME"),
+        System.getenv("ANDROID_SDK_ROOT"),
+        "/opt/android-sdk",
+        "/opt/android/sdk",
+        "/usr/local/android-sdk",
+        "/usr/lib/android-sdk",
+        "/opt/hostedtoolcache/Android",
+    ].findAll { it != null && !it.trim().isEmpty() }
+
+    String sdkDir = sdkCandidates.find { new File(it).exists() }
+    if (sdkDir != null) {
+        String escaped = sdkDir.replace("\\", "\\\\")
+        localPropsFile.text = "sdk.dir=${escaped}\n"
+    }
+}
+
+ensureAndroidSdkProperties()
+
 rootProject.name = "RoadRunnerConsole"
 include ':app'

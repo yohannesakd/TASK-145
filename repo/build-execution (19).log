@@ -1,946 +1,0 @@
-[INFO] Docker install finished
-==================== GIT CLONE ====================
-Cloning into 'project_bundle'...
-
-==================== VALIDATOR OUTPUT ====================
-[95m🚀 Validating Structure for: [1mproject_bundle/[0m
-
-[92m [✓] Directory: docs/[0m
-[92m [✓] Directory: repo/[0m
-[92m [✓] Directory: .tmp/[0m
-[92m [✓] File: docs/design.md[0m
-[92m [✓] File: docs/questions.md[0m
-[92m [✓] File: metadata.json[0m
-[92m [✓] File: repo/docker-compose.yml[0m
-[92m [✓] File: repo/README.md[0m
-[92m [✓] metadata.json is valid[0m
-[92m [✓] .tmp contains a valid 4-file audit/fix-check layout plus required test_coverage_and_readme_audit_report.md[0m
-[92m [✓] Test script: repo/run_tests.sh[0m
-
-─────────────────────────────────────────────
-[1m[92mPASSED: Structure is strictly compliant.[0m
-
-==================== DOCKER SETUP ====================
-
-WARNING! Your credentials are stored unencrypted in '/root/.docker/config.json'.
-Configure a credential helper to remove this warning. See
-https://docs.docker.com/go/credential-store/
-
-Login Succeeded
- Image roadrunner-console:latest Pulling 
- Image roadrunner-console:latest pull access denied for roadrunner-console, repository does not exist or may require 'docker login': denied: requested access to the resource is denied 
- Image roadrunner-console:latest Building 
- Image repo-test-runner Building 
-#1 [internal] load local bake definitions
-#1 reading from stdin 1.21kB done
-#1 DONE 0.0s
-
-#2 [builder internal] load build definition from Dockerfile
-#2 transferring dockerfile:
-#2 transferring dockerfile: 2.46kB done
-#2 DONE 0.0s
-
-#3 [auth] library/eclipse-temurin:pull token for registry-1.docker.io
-#3 DONE 0.0s
-
-#4 [auth] library/python:pull token for registry-1.docker.io
-#4 DONE 0.0s
-
-#5 [builder internal] load metadata for docker.io/library/eclipse-temurin:17-jdk-jammy
-#5 DONE 0.4s
-
-#6 [builder internal] load .dockerignore
-#6 transferring context: 109B done
-#6 DONE 0.0s
-
-#7 [builder internal] load metadata for docker.io/library/python:3.12-slim
-#7 DONE 0.4s
-
-#8 [test-runner sdk-base 1/6] FROM docker.io/library/eclipse-temurin:17-jdk-jammy@sha256:ef5f72c89f9d7532046e6779cae0ee84f72484011c6664aa6e0115f0884fe6ea
-#8 resolve docker.io/library/eclipse-temurin:17-jdk-jammy@sha256:ef5f72c89f9d7532046e6779cae0ee84f72484011c6664aa6e0115f0884fe6ea 0.0s done
-#8 sha256:bf574942e5319276c272844124b5243c55e898c9e1dca768428712d17246fca2 0B / 20.69MB 0.1s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 0B / 145.63MB 0.1s
-#8 sha256:ef5f72c89f9d7532046e6779cae0ee84f72484011c6664aa6e0115f0884fe6ea 6.55kB / 6.55kB done
-#8 sha256:1f4aa5f271706415a72663910ccf59119717953b62c386ef41e4a68f98e23f6a 1.94kB / 1.94kB done
-#8 sha256:a94bc8b916f490a19089291c3de0516a88873a24a24d5dfc9803579fde064b70 6.01kB / 6.01kB done
-#8 sha256:de47083ed7d7e66ba5116fed0a5b036b7c75ac74b2cfb0d9c3b89c79371c4a17 0B / 29.74MB 0.1s
-#8 ...
-
-#9 [builder internal] load build context
-#9 transferring context: 1.57MB 0.1s done
-#9 DONE 0.2s
-
-#8 [test-runner sdk-base 1/6] FROM docker.io/library/eclipse-temurin:17-jdk-jammy@sha256:ef5f72c89f9d7532046e6779cae0ee84f72484011c6664aa6e0115f0884fe6ea
-#8 sha256:bf574942e5319276c272844124b5243c55e898c9e1dca768428712d17246fca2 1.05MB / 20.69MB 0.3s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 7.34MB / 145.63MB 0.3s
-#8 sha256:ef5f72c89f9d7532046e6779cae0ee84f72484011c6664aa6e0115f0884fe6ea 6.55kB / 6.55kB done
-#8 sha256:1f4aa5f271706415a72663910ccf59119717953b62c386ef41e4a68f98e23f6a 1.94kB / 1.94kB done
-#8 sha256:a94bc8b916f490a19089291c3de0516a88873a24a24d5dfc9803579fde064b70 6.01kB / 6.01kB done
-#8 sha256:de47083ed7d7e66ba5116fed0a5b036b7c75ac74b2cfb0d9c3b89c79371c4a17 23.07MB / 29.74MB 0.3s
-#8 sha256:bf574942e5319276c272844124b5243c55e898c9e1dca768428712d17246fca2 4.19MB / 20.69MB 0.4s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 18.87MB / 145.63MB 0.4s
-#8 sha256:de47083ed7d7e66ba5116fed0a5b036b7c75ac74b2cfb0d9c3b89c79371c4a17 29.74MB / 29.74MB 0.4s
-#8 sha256:bf574942e5319276c272844124b5243c55e898c9e1dca768428712d17246fca2 8.39MB / 20.69MB 0.5s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 30.41MB / 145.63MB 0.5s
-#8 sha256:de47083ed7d7e66ba5116fed0a5b036b7c75ac74b2cfb0d9c3b89c79371c4a17 29.74MB / 29.74MB 0.4s done
-#8 sha256:6828893045b86c6fead19498a5a1ea454b5602d9f450b30ff7b848cd6115d5de 159B / 159B 0.5s
-#8 sha256:bf574942e5319276c272844124b5243c55e898c9e1dca768428712d17246fca2 20.69MB / 20.69MB 0.6s
-#8 sha256:de47083ed7d7e66ba5116fed0a5b036b7c75ac74b2cfb0d9c3b89c79371c4a17 29.74MB / 29.74MB 0.4s done
-#8 sha256:6828893045b86c6fead19498a5a1ea454b5602d9f450b30ff7b848cd6115d5de 159B / 159B 0.5s done
-#8 extracting sha256:de47083ed7d7e66ba5116fed0a5b036b7c75ac74b2cfb0d9c3b89c79371c4a17
-#8 sha256:6e8d4ea1b4bfc2188478f4fa665e4590031008651c8f7121476d689958611d54 2.28kB / 2.28kB 0.6s done
-#8 sha256:bf574942e5319276c272844124b5243c55e898c9e1dca768428712d17246fca2 20.69MB / 20.69MB 0.6s done
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 46.14MB / 145.63MB 0.7s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 55.57MB / 145.63MB 1.0s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 71.30MB / 145.63MB 1.2s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 78.64MB / 145.63MB 1.3s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 89.13MB / 145.63MB 1.6s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 104.86MB / 145.63MB 1.8s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 122.68MB / 145.63MB 2.0s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 131.07MB / 145.63MB 2.1s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 143.65MB / 145.63MB 2.3s
-#8 sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 145.63MB / 145.63MB 2.4s done
-#8 extracting sha256:de47083ed7d7e66ba5116fed0a5b036b7c75ac74b2cfb0d9c3b89c79371c4a17 3.0s done
-#8 extracting sha256:bf574942e5319276c272844124b5243c55e898c9e1dca768428712d17246fca2
-#8 extracting sha256:bf574942e5319276c272844124b5243c55e898c9e1dca768428712d17246fca2 1.6s done
-#8 extracting sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4
-#8 ...
-
-#10 [builder stage-2 1/3] FROM docker.io/library/python:3.12-slim@sha256:804ddf3251a60bbf9c92e73b7566c40428d54d0e79d3428194edf40da6521286
-#10 resolve docker.io/library/python:3.12-slim@sha256:804ddf3251a60bbf9c92e73b7566c40428d54d0e79d3428194edf40da6521286 0.0s done
-#10 sha256:804ddf3251a60bbf9c92e73b7566c40428d54d0e79d3428194edf40da6521286 10.37kB / 10.37kB done
-#10 sha256:e31013b9573989b2dc2f0cb688044c9e650c2721dd52c54d0fd3c669d3548bb6 1.75kB / 1.75kB done
-#10 sha256:b4acd70b6f4ca3e8fa68f11d4bc6831d141744654e62286f862b3c8ca7bd0467 5.65kB / 5.65kB done
-#10 sha256:5435b2dcdf5cb7faa0d5b1d4d54be2c72a776fab9a605336f5067d6e9ecb5976 28.31MB / 29.78MB 1.0s
-#10 sha256:25981ed25cff34d7d714ea438c95731e427ea9827b771ed102d6e0fc30eeabe2 1.29MB / 1.29MB 0.7s done
-#10 sha256:d4c207a1ca273594af4c026252870b4b165d536b3cb53b1246d6805e4e6b34b2 6.29MB / 12.11MB 0.9s
-#10 extracting sha256:5435b2dcdf5cb7faa0d5b1d4d54be2c72a776fab9a605336f5067d6e9ecb5976 2.4s done
-#10 extracting sha256:25981ed25cff34d7d714ea438c95731e427ea9827b771ed102d6e0fc30eeabe2 0.1s done
-#10 extracting sha256:d4c207a1ca273594af4c026252870b4b165d536b3cb53b1246d6805e4e6b34b2 1.0s done
-#10 extracting sha256:f0bdb572205ec70132c0fbc66a335ee5fd1614c08d686e8e921a9f55a6c38b52 done
-#10 sha256:f0bdb572205ec70132c0fbc66a335ee5fd1614c08d686e8e921a9f55a6c38b52 250B / 250B 6.1s done
-#10 ...
-
-#8 [test-runner sdk-base 1/6] FROM docker.io/library/eclipse-temurin:17-jdk-jammy@sha256:ef5f72c89f9d7532046e6779cae0ee84f72484011c6664aa6e0115f0884fe6ea
-#8 ...
-
-#11 [builder stage-2 2/3] WORKDIR /serve
-#11 DONE 0.9s
-
-#8 [test-runner sdk-base 1/6] FROM docker.io/library/eclipse-temurin:17-jdk-jammy@sha256:ef5f72c89f9d7532046e6779cae0ee84f72484011c6664aa6e0115f0884fe6ea
-#8 extracting sha256:94c27faa059be473551ae5c1e4c236ba47e5ea786ca558b4cbec3c2b61ed10e4 2.7s done
-#8 extracting sha256:6828893045b86c6fead19498a5a1ea454b5602d9f450b30ff7b848cd6115d5de done
-#8 extracting sha256:6e8d4ea1b4bfc2188478f4fa665e4590031008651c8f7121476d689958611d54 done
-#8 DONE 8.3s
-
-#12 [test-runner sdk-base 2/6] RUN apt-get update && apt-get install -y --no-install-recommends         curl         unzip         git     && rm -rf /var/lib/apt/lists/*
-#12 0.944 Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]
-#12 0.993 Get:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
-#12 1.388 Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
-#12 1.493 Get:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
-#12 1.546 Get:5 http://security.ubuntu.com/ubuntu jammy-security/multiverse amd64 Packages [62.6 kB]
-#12 1.602 Get:6 http://archive.ubuntu.com/ubuntu jammy/universe amd64 Packages [17.5 MB]
-#12 1.692 Get:7 http://security.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [1,311 kB]
-#12 2.067 Get:8 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [3,898 kB]
-#12 2.283 Get:9 http://security.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [6,935 kB]
-#12 2.294 Get:10 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1,792 kB]
-#12 2.331 Get:11 http://archive.ubuntu.com/ubuntu jammy/multiverse amd64 Packages [266 kB]
-#12 2.338 Get:12 http://archive.ubuntu.com/ubuntu jammy/restricted amd64 Packages [164 kB]
-#12 2.346 Get:13 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [4,233 kB]
-#12 2.457 Get:14 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [70.9 kB]
-#12 2.460 Get:15 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [7,151 kB]
-#12 2.640 Get:16 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1,623 kB]
-#12 2.682 Get:17 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.9 kB]
-#12 2.689 Get:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [84.0 kB]
-#12 4.206 Fetched 45.8 MB in 3s (13.4 MB/s)
-#12 4.206 Reading package lists...
-#12 5.275 Reading package lists...
-#12 6.276 Building dependency tree...
-#12 6.466 Reading state information...
-#12 6.642 curl is already the newest version (7.81.0-1ubuntu1.23).
-#12 6.642 The following additional packages will be installed:
-#12 6.643   git-man libcurl3-gnutls liberror-perl libgdbm-compat4 libgdbm6 libperl5.34
-#12 6.643   perl perl-modules-5.34
-#12 6.645 Suggested packages:
-#12 6.645   gettext-base git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui
-#12 6.645   gitk gitweb git-cvs git-mediawiki git-svn gdbm-l10n perl-doc
-#12 6.645   libterm-readline-gnu-perl | libterm-readline-perl-perl make
-#12 6.645   libtap-harness-archive-perl zip
-#12 6.645 Recommended packages:
-#12 6.645   patch less ssh-client netbase
-#12 6.696 The following NEW packages will be installed:
-#12 6.697   git git-man libcurl3-gnutls liberror-perl libgdbm-compat4 libgdbm6
-#12 6.698   libperl5.34 perl perl-modules-5.34 unzip
-#12 6.863 0 upgraded, 10 newly installed, 0 to remove and 5 not upgraded.
-#12 6.863 Need to get 12.7 MB of archives.
-#12 6.863 After this operation, 70.3 MB of additional disk space will be used.
-#12 6.863 Get:1 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 perl-modules-5.34 all 5.34.0-3ubuntu1.5 [2,977 kB]
-#12 7.549 Get:2 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgdbm6 amd64 1.23-1 [33.9 kB]
-#12 7.550 Get:3 http://archive.ubuntu.com/ubuntu jammy/main amd64 libgdbm-compat4 amd64 1.23-1 [6,606 B]
-#12 7.550 Get:4 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libperl5.34 amd64 5.34.0-3ubuntu1.5 [4,797 kB]
-#12 7.657 Get:5 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 perl amd64 5.34.0-3ubuntu1.5 [232 kB]
-#12 7.661 Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 libcurl3-gnutls amd64 7.81.0-1ubuntu1.23 [284 kB]
-#12 7.666 Get:7 http://archive.ubuntu.com/ubuntu jammy/main amd64 liberror-perl all 0.17029-1 [26.5 kB]
-#12 7.667 Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 git-man all 1:2.34.1-1ubuntu1.17 [954 kB]
-#12 7.702 Get:9 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 git amd64 1:2.34.1-1ubuntu1.17 [3,174 kB]
-#12 7.779 Get:10 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 unzip amd64 6.0-26ubuntu3.2 [175 kB]
-#12 8.252 debconf: delaying package configuration, since apt-utils is not installed
-#12 8.281 Fetched 12.7 MB in 1s (11.7 MB/s)
-#12 8.310 Selecting previously unselected package perl-modules-5.34.
-#12 8.310 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 8208 files and directories currently installed.)
-#12 8.311 Preparing to unpack .../0-perl-modules-5.34_5.34.0-3ubuntu1.5_all.deb ...
-#12 8.315 Unpacking perl-modules-5.34 (5.34.0-3ubuntu1.5) ...
-#12 8.565 Selecting previously unselected package libgdbm6:amd64.
-#12 8.567 Preparing to unpack .../1-libgdbm6_1.23-1_amd64.deb ...
-#12 8.574 Unpacking libgdbm6:amd64 (1.23-1) ...
-#12 8.601 Selecting previously unselected package libgdbm-compat4:amd64.
-#12 8.603 Preparing to unpack .../2-libgdbm-compat4_1.23-1_amd64.deb ...
-#12 8.606 Unpacking libgdbm-compat4:amd64 (1.23-1) ...
-#12 8.635 Selecting previously unselected package libperl5.34:amd64.
-#12 8.635 Preparing to unpack .../3-libperl5.34_5.34.0-3ubuntu1.5_amd64.deb ...
-#12 8.639 Unpacking libperl5.34:amd64 (5.34.0-3ubuntu1.5) ...
-#12 8.816 Selecting previously unselected package perl.
-#12 8.816 Preparing to unpack .../4-perl_5.34.0-3ubuntu1.5_amd64.deb ...
-#12 8.825 Unpacking perl (5.34.0-3ubuntu1.5) ...
-#12 8.859 Selecting previously unselected package libcurl3-gnutls:amd64.
-#12 8.860 Preparing to unpack .../5-libcurl3-gnutls_7.81.0-1ubuntu1.23_amd64.deb ...
-#12 8.864 Unpacking libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.23) ...
-#12 8.890 Selecting previously unselected package liberror-perl.
-#12 8.891 Preparing to unpack .../6-liberror-perl_0.17029-1_all.deb ...
-#12 8.894 Unpacking liberror-perl (0.17029-1) ...
-#12 8.917 Selecting previously unselected package git-man.
-#12 8.919 Preparing to unpack .../7-git-man_1%3a2.34.1-1ubuntu1.17_all.deb ...
-#12 8.922 Unpacking git-man (1:2.34.1-1ubuntu1.17) ...
-#12 8.958 Selecting previously unselected package git.
-#12 8.960 Preparing to unpack .../8-git_1%3a2.34.1-1ubuntu1.17_amd64.deb ...
-#12 8.966 Unpacking git (1:2.34.1-1ubuntu1.17) ...
-#12 9.078 Selecting previously unselected package unzip.
-#12 9.079 Preparing to unpack .../9-unzip_6.0-26ubuntu3.2_amd64.deb ...
-#12 9.083 Unpacking unzip (6.0-26ubuntu3.2) ...
-#12 9.114 Setting up unzip (6.0-26ubuntu3.2) ...
-#12 9.128 Setting up libcurl3-gnutls:amd64 (7.81.0-1ubuntu1.23) ...
-#12 9.139 Setting up perl-modules-5.34 (5.34.0-3ubuntu1.5) ...
-#12 9.150 Setting up git-man (1:2.34.1-1ubuntu1.17) ...
-#12 9.161 Setting up libgdbm6:amd64 (1.23-1) ...
-#12 9.172 Setting up libgdbm-compat4:amd64 (1.23-1) ...
-#12 9.183 Setting up libperl5.34:amd64 (5.34.0-3ubuntu1.5) ...
-#12 9.194 Setting up perl (5.34.0-3ubuntu1.5) ...
-#12 9.217 Setting up liberror-perl (0.17029-1) ...
-#12 9.227 Setting up git (1:2.34.1-1ubuntu1.17) ...
-#12 9.244 Processing triggers for libc-bin (2.35-0ubuntu3.13) ...
-#12 DONE 9.4s
-
-#13 [builder sdk-base 3/6] RUN mkdir -p /opt/android-sdk/cmdline-tools &&     curl -fsSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip         -o /tmp/cmdline-tools.zip &&     unzip -q /tmp/cmdline-tools.zip -d /opt/android-sdk/cmdline-tools &&     mv /opt/android-sdk/cmdline-tools/cmdline-tools /opt/android-sdk/cmdline-tools/latest &&     rm /tmp/cmdline-tools.zip
-#13 DONE 2.8s
-
-#14 [test-runner sdk-base 4/6] RUN yes | sdkmanager --licenses > /dev/null 2>&1 &&     sdkmanager --update &&     sdkmanager         "platform-tools"         "platforms;android-34"         "build-tools;34.0.0"
-#14 3.635 Loading package information...                                                  Loading local repository...                                                     [                                       ] 3% Loading local repository...        [                                       ] 3% Fetch remote repository...         [=                                      ] 3% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 7% Fetch remote repository...         [==                                     ] 7% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 10% Computing updates...              
-#14 5.250 No updates available
-#14 5.254 [=======================================] 100% Computing updates...             
-#14 5.254 
-#14 5.585 Loading package information...                                                  Loading local repository...                                                     [                                       ] 3% Loading local repository...        [                                       ] 3% Fetch remote repository...         [=                                      ] 3% Fetch remote repository...         [=                                      ] 4% Fetch remote repository...         [=                                      ] 5% Fetch remote repository...         [==                                     ] 5% Fetch remote repository...         [==                                     ] 6% Fetch remote repository...         [==                                     ] 7% Fetch remote repository...         [==                                     ] 7% Computing updates...               [===                                    ] 8% Computing updates...               [===                                    ] 10% Computing updates...              [===                                    ] 10% Installing Android SDK Build-Tools[===                                    ] 10% Downloading build-tools_r34-linux.[====                                   ] 10% Downloading build-tools_r34-linux.[====                                   ] 11% Downloading build-tools_r34-linux.[====                                   ] 12% Downloading build-tools_r34-linux.[=====                                  ] 13% Downloading build-tools_r34-linux.[=====                                  ] 14% Downloading build-tools_r34-linux.[=====                                  ] 15% Downloading build-tools_r34-linux.[======                                 ] 15% Downloading build-tools_r34-linux.[======                                 ] 16% Downloading build-tools_r34-linux.[======                                 ] 17% Downloading build-tools_r34-linux.[=======                                ] 18% Downloading build-tools_r34-linux.[=======                                ] 18% Unzipping...                      [=======                                ] 18% Unzipping... android-14/NOTICE.txt[=======                                ] 18% Unzipping... android-14/aapt      [=======                                ] 18% Unzipping... android-14/aapt2     [=======                                ] 18% Unzipping... android-14/aarch64-li[=======                                ] 18% Unzipping... android-14/aidl      [=======                                ] 18% Unzipping... android-14/apksigner [=======                                ] 18% Unzipping... android-14/arm-linux-[=======                                ] 18% Unzipping... android-14/bcc_compat[=======                                ] 18% Unzipping... android-14/core-lambd[=======                                ] 18% Unzipping... android-14/d8        [=======                                ] 18% Unzipping... android-14/dexdump   [=======                                ] 18% Unzipping... android-14/i686-linux[=======                                ] 18% Unzipping... android-14/lld       [=======                                ] 18% Unzipping... android-14/llvm-rs-cc[=======                                ] 18% Unzipping... android-14/mipsel-lin[=======                                ] 18% Unzipping... android-14/runtime.pr[=======                                ] 18% Unzipping... android-14/source.pro[=======                                ] 18% Unzipping... android-14/split-sele[=======                                ] 18% Unzipping... android-14/x86_64-lin[=======                                ] 18% Unzipping... android-14/zipalign  [=======                                ] 18% Unzipping... android-14/lib/apksig[=======                                ] 19% Unzipping... android-14/lib/apksig[=======                                ] 19% Unzipping... android-14/lib/d8.jar[=======                                ] 20% Unzipping... android-14/lib/d8.jar[=======                                ] 20% Unzipping... android-14/lib64/libL[========                               ] 20% Unzipping... android-14/lib64/libL[========                               ] 21% Unzipping... android-14/lib64/libL[========                               ] 21% Unzipping... android-14/lib64/libb[========                               ] 21% Unzipping... android-14/lib64/libc[========                               ] 22% Unzipping... android-14/lib64/libc[========                               ] 22% Unzipping... android-14/lld-bin/ll[=========                              ] 23% Unzipping... android-14/lld-bin/ll[=========                              ] 24% Unzipping... android-14/lld-bin/ll[=========                              ] 24% Unzipping... android-14/renderscri[=========                              ] 25% Unzipping... android-14/renderscri[===============                        ] 40% Unzipping... android-14/renderscri[===============                        ] 40% Installing Android SDK Platform 34[===============                        ] 40% Downloading platform-34-ext7_r03.z[================                       ] 40% Downloading platform-34-ext7_r03.z[================                       ] 41% Downloading platform-34-ext7_r03.z[================                       ] 42% Downloading platform-34-ext7_r03.z[=================                      ] 43% Downloading platform-34-ext7_r03.z[=================                      ] 44% Downloading platform-34-ext7_r03.z[=================                      ] 45% Downloading platform-34-ext7_r03.z[==================                     ] 45% Downloading platform-34-ext7_r03.z[==================                     ] 46% Downloading platform-34-ext7_r03.z[==================                     ] 47% Downloading platform-34-ext7_r03.z[==================                     ] 48% Downloading platform-34-ext7_r03.z[==================                     ] 48% Unzipping... android-14/renderscri[==================                     ] 48% Unzipping... android-34/          [==================                     ] 48% Unzipping... android-34/android.ja[===================                    ] 48% Unzipping... android-34/android.ja[===================                    ] 49% Unzipping... android-34/android.ja[===================                    ] 50% Unzipping... android-34/android.ja[====================                   ] 50% Unzipping... android-34/android.ja[====================                   ] 50% Unzipping... android-34/optional/ [====================                   ] 50% Unzipping... android-34/optional/a[====================                   ] 50% Unzipping... android-34/optional/l[====================                   ] 50% Unzipping... android-34/optional/o[====================                   ] 50% Unzipping... android-34/optional/a[====================                   ] 50% Unzipping... android-34/optional/o[====================                   ] 50% Unzipping... android-34/templates/[====================                   ] 50% Unzipping... android-34/core-for-s[====================                   ] 51% Unzipping... android-34/core-for-s[====================                   ] 51% Unzipping... android-34/build.prop[====================                   ] 51% Unzipping... android-34/android-st[====================                   ] 51% Unzipping... android-34/uiautomato[====================                   ] 51% Unzipping... android-34/source.pro[====================                   ] 51% Unzipping... android-34/data/     [====================                   ] 51% Unzipping... android-34/data/servi[====================                   ] 51% Unzipping... android-34/data/NOTIC[====================                   ] 51% Unzipping... android-34/data/widge[====================                   ] 51% Unzipping... android-34/data/broad[====================                   ] 51% Unzipping... android-34/data/api-v[====================                   ] 52% Unzipping... android-34/data/api-v[====================                   ] 52% Unzipping... android-34/data/featu[====================                   ] 52% Unzipping... android-34/data/annot[====================                   ] 52% Unzipping... android-34/data/res/ [====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/l[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/m[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/a[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/d[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/x[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/l[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/l[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/r[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/x[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/r[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/a[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/r[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/c[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/d[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/t[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/x[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/r[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/r[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/l[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/r[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/d[====================                   ] 52% Unzipping... android-34/data/res/v[====================                   ] 52% Unzipping... android-34/data/res/d[====================                   ] 52% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/r[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/r[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/m[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/r[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/c[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/r[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/r[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/d[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/r[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/c[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/m[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/r[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/r[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/i[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/d[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/m[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/d[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/d[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/d[=====================                  ] 53% Unzipping... android-34/data/res/v[=====================                  ] 53% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/x[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/a[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/m[=====================                  ] 54% Unzipping... android-34/data/res/x[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/a[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/i[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/l[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/l[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/l[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/m[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/l[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/l[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/l[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/c[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/m[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/m[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/l[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/r[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/res/d[=====================                  ] 54% Unzipping... android-34/data/res/v[=====================                  ] 54% Unzipping... android-34/data/categ[=====================                  ] 54% Unzipping... android-34/data/activ[=====================                  ] 55% Unzipping... android-34/data/activ[=====================                  ] 55% Unzipping... android-34/sdk.proper[=====================                  ] 55% Unzipping... android-34/skins/    [=====================                  ] 55% Unzipping... android-34/skins/WXGA[=====================                  ] 55% Unzipping... android-34/skins/WQVG[=====================                  ] 55% Unzipping... android-34/skins/NOTI[=====================                  ] 55% Unzipping... android-34/skins/HVGA[=====================                  ] 55% Unzipping... android-34/skins/WVGA[=====================                  ] 55% Unzipping... android-34/skins/WQVG[=====================                  ] 55% Unzipping... android-34/skins/WVGA[=====================                  ] 55% Unzipping... android-34/skins/QVGA[=====================                  ] 55% Unzipping... android-34/skins/WXGA[=====================                  ] 55% Unzipping... android-34/skins/WSVG[=====================                  ] 55% Unzipping... android-34/skins/WXGA[=====================                  ] 55% Unzipping... android-34/framework.[===========================            ] 70% Unzipping... android-34/framework.[===========================            ] 70% Installing Android SDK Platform-To[===========================            ] 70% Downloading platform-tools_r37.0.0[============================           ] 70% Downloading platform-tools_r37.0.0[============================           ] 71% Downloading platform-tools_r37.0.0[============================           ] 72% Downloading platform-tools_r37.0.0[=============================          ] 73% Downloading platform-tools_r37.0.0[=============================          ] 74% Downloading platform-tools_r37.0.0[=============================          ] 75% Downloading platform-tools_r37.0.0[==============================         ] 75% Downloading platform-tools_r37.0.0[==============================         ] 76% Downloading platform-tools_r37.0.0[==============================         ] 77% Downloading platform-tools_r37.0.0[==============================         ] 77% Unzipping... android-34/framework.[==============================         ] 77% Unzipping... platform-tools/NOTICE[===============================        ] 78% Unzipping... platform-tools/NOTICE[===============================        ] 78% Unzipping... platform-tools/adb   [===============================        ] 79% Unzipping... platform-tools/adb   [===============================        ] 80% Unzipping... platform-tools/adb   [================================       ] 80% Unzipping... platform-tools/adb   [================================       ] 81% Unzipping... platform-tools/adb   [================================       ] 82% Unzipping... platform-tools/adb   [================================       ] 82% Unzipping... platform-tools/etc1to[================================       ] 82% Unzipping... platform-tools/fastbo[=================================      ] 83% Unzipping... platform-tools/fastbo[=================================      ] 83% Unzipping... platform-tools/hprof-[=================================      ] 83% Unzipping... platform-tools/lib64/[=================================      ] 83% Unzipping... platform-tools/make_f[=================================      ] 83% Unzipping... platform-tools/mke2fs[=================================      ] 84% Unzipping... platform-tools/mke2fs[=================================      ] 84% Unzipping... platform-tools/source[=================================      ] 84% Unzipping... platform-tools/sqlite[=================================      ] 85% Unzipping... platform-tools/sqlite[=======================================] 100% Unzipping... platform-tools/sqlit
-#14 12.78 
-#14 DONE 13.4s
-
-#15 [builder sdk-base 5/6] RUN ARCH="$(uname -m)" &&     if [ "$ARCH" = "aarch64" ]; then         curl -fsSL -L https://github.com/lzhiyong/android-sdk-tools/releases/download/34.0.3/android-sdk-tools-static-aarch64.zip             -o /tmp/sdk-tools-arm64.zip &&         unzip -q -o -j /tmp/sdk-tools-arm64.zip build-tools/aapt2 -d /opt/android-sdk/build-tools/34.0.0/ &&         chmod +x /opt/android-sdk/build-tools/34.0.0/aapt2 &&         rm /tmp/sdk-tools-arm64.zip;     fi
-#15 DONE 0.3s
-
-#16 [builder sdk-base 6/6] WORKDIR /project
-#16 DONE 0.0s
-
-#17 [test-runner] exporting to image
-#17 exporting layers
-#17 ...
-
-#18 [builder builder 1/3] COPY . .
-#18 DONE 1.0s
-
-#19 [builder builder 2/3] RUN chmod +x gradlew &&     ./gradlew assembleDebug test lint --no-daemon --stacktrace
-#19 0.656 Downloading https://services.gradle.org/distributions/gradle-8.7-bin.zip
-#19 2.125 ........
-#19 ...
-
-#17 [test-runner] exporting to image
-#17 exporting layers 3.5s done
-#17 writing image sha256:4abee047b815c2fd38fdec2fe92b56cef77c041ca5fe9ea76f91273c7995ae94 done
-#17 naming to docker.io/library/repo-test-runner done
-#17 DONE 3.5s
-
-#20 [test-runner] resolving provenance for metadata file
-#20 DONE 0.0s
-
-#19 [builder builder 2/3] RUN chmod +x gradlew &&     ./gradlew assembleDebug test lint --no-daemon --stacktrace
-#19 2.125 ............10%.............20%.............30%.............40%............50%.............60%.............70%.............80%.............90%............100%
-#19 5.087 
-#19 5.087 Welcome to Gradle 8.7!
-#19 5.087 
-#19 5.087 Here are the highlights of this release:
-#19 5.087  - Compiling and testing with Java 22
-#19 5.087  - Cacheable Groovy script compilation
-#19 5.087  - New methods in lazy collection properties
-#19 5.087 
-#19 5.088 For more details see https://docs.gradle.org/8.7/release-notes.html
-#19 5.088 
-#19 5.286 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.7/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-#19 6.686 Daemon will be stopped at the end of the build 
-#19 42.99 
-#19 42.99 > Configure project :app
-#19 42.99 WARNING: The option setting 'android.aapt2FromMavenOverride=/opt/android-sdk/build-tools/34.0.0/aapt2' is experimental.
-#19 46.49 
-#19 46.49 > Task :app:preBuild UP-TO-DATE
-#19 46.49 > Task :app:preDebugBuild UP-TO-DATE
-#19 46.49 > Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
-#19 56.69 > Task :app:generateDebugResValues
-#19 56.69 > Task :app:dataBindingMergeDependencyArtifactsDebug
-#19 56.79 > Task :app:generateDebugResources
-#19 61.99 > Task :app:packageDebugResources
-#19 64.49 > Task :app:mergeDebugResources
-#19 64.59 > Task :app:parseDebugLocalResources
-#19 66.99 > Task :app:javaPreCompileDebug
-#19 68.19 > Task :app:dataBindingGenBaseClassesDebug
-#19 68.59 > Task :app:mapDebugSourceSetPaths
-#19 68.59 > Task :app:createDebugCompatibleScreenManifests
-#19 68.59 > Task :app:checkDebugAarMetadata
-#19 68.59 > Task :app:extractDeepLinksDebug
-#19 69.39 > Task :app:processDebugMainManifest
-#19 69.79 > Task :app:processDebugManifest
-#19 69.89 > Task :app:processDebugManifestForPackage
-#19 71.99 > Task :app:mergeDebugShaders
-#19 72.09 > Task :app:compileDebugShaders NO-SOURCE
-#19 72.09 > Task :app:generateDebugAssets UP-TO-DATE
-#19 72.39 > Task :app:mergeDebugAssets
-#19 72.39 > Task :app:compressDebugAssets
-#19 72.39 > Task :app:desugarDebugFileDependencies
-#19 74.49 > Task :app:processDebugResources
-#19 74.59 > Task :app:checkDebugDuplicateClasses
-#19 85.69 
-#19 85.69 > Task :app:compileDebugJavaWithJavac
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/UserEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class UserEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ProductEntity.java:17: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class ProductEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class CartEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartItemEntity.java:30: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class CartItemEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartItemEntity.java:30: warning: product_id column references a foreign key but it is not part of an index. This may trigger full table scans whenever parent table is modified so you are highly advised to create an index that covers this column.
-#19 85.69 public class CartItemEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class OrderEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderItemEntity.java:24: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class OrderItemEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderDiscountEntity.java:25: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class OrderDiscountEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderDiscountEntity.java:25: warning: discount_rule_id column references a foreign key but it is not part of an index. This may trigger full table scans whenever parent table is modified so you are highly advised to create an index that covers this column.
-#19 85.69 public class OrderDiscountEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ShippingTemplateEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class ShippingTemplateEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/DiscountRuleEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class DiscountRuleEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/EmployerEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class EmployerEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ComplianceCaseEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class ComplianceCaseEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/AuditLogEntity.java:18: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class AuditLogEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ReportEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class ReportEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/WorkerEntity.java:17: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class WorkerEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/TaskEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class TaskEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/TaskAcceptanceEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class TaskAcceptanceEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ZoneEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class ZoneEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ReputationEventEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class ReputationEventEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/SensitiveWordEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class SensitiveWordEntity {
-#19 85.69        ^
-#19 85.69 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/UserEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.69 public class UserEntity {
-#19 85.70        ^
-#19 85.70 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ProductEntity.java:17: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.70 public class ProductEntity {
-#19 85.70        ^
-#19 85.70 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.70 public class CartEntity {
-#19 85.70        ^
-#19 85.70 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartItemEntity.java:30: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.70 public class CartItemEntity {
-#19 85.70        ^
-#19 85.70 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.70 public class OrderEntity {
-#19 85.70        ^
-#19 85.70 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderItemEntity.java:24: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.70 public class OrderItemEntity {
-#19 85.71        ^
-#19 85.71 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderDiscountEntity.java:25: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.71 public class OrderDiscountEntity {
-#19 85.71        ^
-#19 85.71 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ShippingTemplateEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.71 public class ShippingTemplateEntity {
-#19 85.71        ^
-#19 85.71 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/DiscountRuleEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.71 public class DiscountRuleEntity {
-#19 85.71        ^
-#19 85.71 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/EmployerEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.71 public class EmployerEntity {
-#19 85.72        ^
-#19 85.72 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ComplianceCaseEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.72 public class ComplianceCaseEntity {
-#19 85.72        ^
-#19 85.72 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/AuditLogEntity.java:18: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.72 public class AuditLogEntity {
-#19 85.72        ^
-#19 85.72 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ReportEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.73 public class ReportEntity {
-#19 85.73        ^
-#19 85.73 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/WorkerEntity.java:17: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.73 public class WorkerEntity {
-#19 85.73        ^
-#19 85.73 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/TaskEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.73 public class TaskEntity {
-#19 85.73        ^
-#19 85.73 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/TaskAcceptanceEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.73 public class TaskAcceptanceEntity {
-#19 85.74        ^
-#19 85.74 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ZoneEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.74 public class ZoneEntity {
-#19 85.74        ^
-#19 85.74 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ReputationEventEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.74 public class ReputationEventEntity {
-#19 85.74        ^
-#19 85.75 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/SensitiveWordEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 85.75 public class SensitiveWordEntity {
-#19 85.75        ^
-#19 90.29 Note: Some input files use or override a deprecated API.
-#19 90.29 Note: Recompile with -Xlint:deprecation for details.
-#19 90.29 40 warnings
-#19 125.0 
-#19 125.0 > Task :app:dexBuilderDebug
-#19 155.0 > Task :app:mergeDebugGlobalSynthetics
-#19 180.0 > Task :app:processDebugJavaRes
-#19 182.5 > Task :app:mergeDebugJavaResource
-#19 188.4 > Task :app:mergeLibDexDebug
-#19 188.4 > Task :app:mergeExtDexDebug
-#19 188.9 > Task :app:mergeDebugJniLibFolders
-#19 189.3 > Task :app:mergeProjectDexDebug
-#19 189.5 > Task :app:mergeDebugNativeLibs
-#19 191.0 > Task :app:validateSigningDebug
-#19 191.0 > Task :app:writeDebugAppMetadata
-#19 191.1 > Task :app:writeDebugSigningConfigVersions
-#19 191.1 
-#19 191.1 > Task :app:stripDebugDebugSymbols
-#19 191.1 Unable to strip the following libraries, packaging them as they are: libsqlcipher.so.
-#19 191.2 
-#19 191.2 > Task :app:bundleDebugClassesToRuntimeJar
-#19 191.3 > Task :app:bundleDebugClassesToCompileJar
-#19 191.3 > Task :app:preDebugUnitTestBuild UP-TO-DATE
-#19 191.3 > Task :app:javaPreCompileDebugUnitTest
-#19 217.8 > Task :app:compileDebugUnitTestJavaWithJavac
-#19 217.9 > Task :app:packageDebug
-#19 217.9 > Task :app:createDebugApkListingFileRedirect
-#19 217.9 > Task :app:assembleDebug
-#19 217.9 > Task :app:packageDebugUnitTestForUnitTest
-#19 217.9 > Task :app:generateDebugUnitTestConfig
-#19 218.0 > Task :app:processDebugUnitTestJavaRes
-#19 230.9 > Task :app:testDebugUnitTest
-#19 230.9 > Task :app:preReleaseBuild UP-TO-DATE
-#19 231.6 > Task :app:dataBindingMergeDependencyArtifactsRelease
-#19 231.6 > Task :app:generateReleaseResValues
-#19 231.6 > Task :app:generateReleaseResources
-#19 233.8 > Task :app:packageReleaseResources
-#19 234.0 > Task :app:parseReleaseLocalResources
-#19 234.1 > Task :app:javaPreCompileRelease
-#19 234.1 > Task :app:checkReleaseAarMetadata
-#19 234.1 > Task :app:mapReleaseSourceSetPaths
-#19 234.1 > Task :app:createReleaseCompatibleScreenManifests
-#19 234.1 > Task :app:extractDeepLinksRelease
-#19 234.3 > Task :app:processReleaseMainManifest
-#19 234.3 > Task :app:processReleaseManifest
-#19 234.3 > Task :app:processReleaseManifestForPackage
-#19 234.3 > Task :app:preReleaseUnitTestBuild UP-TO-DATE
-#19 234.3 > Task :app:javaPreCompileReleaseUnitTest
-#19 234.3 > Task :app:mergeReleaseShaders
-#19 234.3 > Task :app:compileReleaseShaders NO-SOURCE
-#19 234.3 > Task :app:generateReleaseAssets UP-TO-DATE
-#19 234.6 > Task :app:mergeReleaseAssets
-#19 234.7 > Task :app:processReleaseUnitTestJavaRes
-#19 234.7 > Task :app:preDebugAndroidTestBuild SKIPPED
-#19 234.7 > Task :app:generateDebugAndroidTestResValues
-#19 235.3 > Task :app:mergeReleaseResources
-#19 238.6 
-#19 238.6 > Task :app:generateDebugAndroidTestLintModel
-#19 238.6 Generating lint files for backported methods only (compile API B)
-#19 239.2 
-#19 239.2 > Task :app:dataBindingGenBaseClassesRelease
-#19 239.2 > Task :app:extractProguardFiles
-#19 239.3 > Task :app:generateDebugLintReportModel
-#19 239.4 > Task :app:generateDebugUnitTestLintModel
-#19 240.1 > Task :app:processReleaseResources
-#19 250.8 
-#19 250.8 > Task :app:compileReleaseJavaWithJavac
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/UserEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class UserEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ProductEntity.java:17: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ProductEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class CartEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartItemEntity.java:30: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class CartItemEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartItemEntity.java:30: warning: product_id column references a foreign key but it is not part of an index. This may trigger full table scans whenever parent table is modified so you are highly advised to create an index that covers this column.
-#19 250.8 public class CartItemEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class OrderEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderItemEntity.java:24: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class OrderItemEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderDiscountEntity.java:25: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class OrderDiscountEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderDiscountEntity.java:25: warning: discount_rule_id column references a foreign key but it is not part of an index. This may trigger full table scans whenever parent table is modified so you are highly advised to create an index that covers this column.
-#19 250.8 public class OrderDiscountEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ShippingTemplateEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ShippingTemplateEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/DiscountRuleEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class DiscountRuleEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/EmployerEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class EmployerEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ComplianceCaseEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ComplianceCaseEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/AuditLogEntity.java:18: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class AuditLogEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ReportEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ReportEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/WorkerEntity.java:17: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class WorkerEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/TaskEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class TaskEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/TaskAcceptanceEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class TaskAcceptanceEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ZoneEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ZoneEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ReputationEventEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ReputationEventEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/SensitiveWordEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class SensitiveWordEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/UserEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class UserEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ProductEntity.java:17: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ProductEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class CartEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/CartItemEntity.java:30: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class CartItemEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class OrderEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderItemEntity.java:24: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class OrderItemEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/OrderDiscountEntity.java:25: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class OrderDiscountEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ShippingTemplateEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ShippingTemplateEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/DiscountRuleEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class DiscountRuleEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/EmployerEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class EmployerEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ComplianceCaseEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ComplianceCaseEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/AuditLogEntity.java:18: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class AuditLogEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ReportEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ReportEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/WorkerEntity.java:17: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class WorkerEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/TaskEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class TaskEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/TaskAcceptanceEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class TaskAcceptanceEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ZoneEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ZoneEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/ReputationEventEntity.java:16: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class ReputationEventEntity {
-#19 250.8        ^
-#19 250.8 /project/app/src/main/java/com/roadrunner/dispatch/infrastructure/db/entity/SensitiveWordEntity.java:15: warning: There are multiple good constructors and Room will pick the no-arg constructor. You can use the @Ignore annotation to eliminate unwanted constructors.
-#19 250.8 public class SensitiveWordEntity {
-#19 250.8        ^
-#19 255.9 Note: Some input files use or override a deprecated API.
-#19 255.9 Note: Recompile with -Xlint:deprecation for details.
-#19 255.9 40 warnings
-#19 256.9 
-#19 256.9 > Task :app:bundleReleaseClassesToRuntimeJar
-#19 257.0 > Task :app:bundleReleaseClassesToCompileJar
-#19 258.7 > Task :app:compileReleaseUnitTestJavaWithJavac
-#19 258.8 > Task :app:packageReleaseUnitTestForUnitTest
-#19 258.8 > Task :app:generateReleaseUnitTestConfig
-#19 258.8 > Task :app:processReleaseJavaRes
-#19 269.4 > Task :app:lintAnalyzeDebug
-#19 273.7 > Task :app:testReleaseUnitTest
-#19 273.7 > Task :app:test
-#19 277.8 > Task :app:lintAnalyzeDebugAndroidTest
-#19 282.4 > Task :app:lintAnalyzeDebugUnitTest
-#19 288.5 
-#19 288.5 > Task :app:lintReportDebug
-#19 288.5 Wrote HTML report to file:///project/app/build/reports/lint-results-debug.html
-#19 288.5 
-#19 288.5 > Task :app:lintDebug
-#19 288.5 > Task :app:lint
-#19 288.6 
-#19 288.6 BUILD SUCCESSFUL in 4m 48s
-#19 288.6 83 actionable tasks: 83 executed
-#19 DONE 289.2s
-
-#21 [builder builder 3/3] RUN mkdir -p /output &&     cp app/build/outputs/apk/debug/app-debug.apk /output/app-debug.apk &&     sha256sum /output/app-debug.apk | awk '{print $1}' > /output/app-debug.apk.sha256
-#21 DONE 0.7s
-
-#22 [builder stage-2 3/3] COPY --from=builder /output/ .
-#22 DONE 0.1s
-
-#23 [builder] exporting to image
-#23 exporting layers 0.1s done
-#23 writing image sha256:484a7d009f65968b004ff2ed5e89dd0f11a570e07e69690d215b84cb22a46270 done
-#23 naming to docker.io/library/roadrunner-console:latest done
-#23 DONE 0.1s
-
-#24 [builder] resolving provenance for metadata file
-#24 DONE 0.1s
- Image repo-test-runner Built 
- Image roadrunner-console:latest Built 
- Network repo_default Creating 
- Network repo_default Created 
- Volume repo_apk-output Creating 
- Volume repo_apk-output Created 
- Container roadrunner-console Creating 
- Container repo-test-runner-1 Creating 
- Container roadrunner-console Created 
- Container repo-test-runner-1 Created 
- Container roadrunner-console Starting 
- Container repo-test-runner-1 Starting 
- Container repo-test-runner-1 Started 
- Container roadrunner-console Started 
-
-==================== TEST SUITE ====================
- Container roadrunner-console Stopping 
- Container repo-test-runner-1 Stopping 
- Container repo-test-runner-1 Stopped 
- Container roadrunner-console Stopped 
-============================================
-  RoadRunner Dispatch — Test Suite
-============================================
-
---- Unit Tests (JVM) ---
-Downloading https://services.gradle.org/distributions/gradle-8.7-bin.zip
-............10%.............20%.............30%.............40%............50%.............60%.............70%.............80%.............90%............100%
-
-Welcome to Gradle 8.7!
-
-Here are the highlights of this release:
- - Compiling and testing with Java 22
- - Cacheable Groovy script compilation
- - New methods in lazy collection properties
-
-For more details see https://docs.gradle.org/8.7/release-notes.html
-
-To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.7/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-Daemon will be stopped at the end of the build 
-
-> Configure project :app
-WARNING: The option setting 'android.aapt2FromMavenOverride=/opt/android-sdk/build-tools/34.0.0/aapt2' is experimental.
-
-FAILURE: Build failed with an exception.
-
-* What went wrong:
-Could not determine the dependencies of task ':app:testDebugUnitTest'.
-> SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/codebuild/output/src3724292308/src/github.com/Huseny/task_manager/project_bundle/repo/local.properties'.
-
-* Try:
-> Run with --info or --debug option to get more log output.
-> Run with --scan to get full insights.
-> Get more help at https://help.gradle.org.
-
-* Exception is:
-org.gradle.api.internal.tasks.TaskDependencyResolveException: Could not determine the dependencies of task ':app:testDebugUnitTest'.
-	at org.gradle.api.internal.tasks.CachingTaskDependencyResolveContext.getDependencies(CachingTaskDependencyResolveContext.java:68)
-	at org.gradle.execution.plan.TaskDependencyResolver.resolveDependenciesFor(TaskDependencyResolver.java:49)
-	at org.gradle.execution.plan.LocalTaskNode.getDependencies(LocalTaskNode.java:148)
-	at org.gradle.execution.plan.LocalTaskNode.resolveDependencies(LocalTaskNode.java:122)
-	at org.gradle.execution.plan.DefaultExecutionPlan.discoverNodeRelationships(DefaultExecutionPlan.java:182)
-	at org.gradle.execution.plan.DefaultExecutionPlan.doAddEntryNodes(DefaultExecutionPlan.java:154)
-	at org.gradle.execution.plan.DefaultExecutionPlan.addEntryTasks(DefaultExecutionPlan.java:129)
-	at org.gradle.execution.plan.DefaultExecutionPlan.addEntryTasks(DefaultExecutionPlan.java:121)
-	at org.gradle.execution.TaskNameResolvingBuildTaskScheduler.scheduleRequestedTasks(TaskNameResolvingBuildTaskScheduler.java:54)
-	at org.gradle.execution.DefaultTasksBuildTaskScheduler.scheduleRequestedTasks(DefaultTasksBuildTaskScheduler.java:72)
-	at org.gradle.initialization.DefaultTaskExecutionPreparer.lambda$scheduleRequestedTasks$0(DefaultTaskExecutionPreparer.java:46)
-	at org.gradle.internal.Factories$1.create(Factories.java:31)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withReplacedLocks(DefaultWorkerLeaseService.java:360)
-	at org.gradle.api.internal.project.DefaultProjectStateRegistry$DefaultBuildProjectRegistry.withMutableStateOfAllProjects(DefaultProjectStateRegistry.java:240)
-	at org.gradle.api.internal.project.DefaultProjectStateRegistry$DefaultBuildProjectRegistry.withMutableStateOfAllProjects(DefaultProjectStateRegistry.java:233)
-	at org.gradle.initialization.DefaultTaskExecutionPreparer.scheduleRequestedTasks(DefaultTaskExecutionPreparer.java:45)
-	at org.gradle.initialization.VintageBuildModelController.lambda$scheduleRequestedTasks$0(VintageBuildModelController.java:76)
-	at org.gradle.internal.model.StateTransitionController.lambda$inState$1(StateTransitionController.java:99)
-	at org.gradle.internal.model.StateTransitionController.lambda$inState$2(StateTransitionController.java:114)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.inState(StateTransitionController.java:110)
-	at org.gradle.internal.model.StateTransitionController.inState(StateTransitionController.java:98)
-	at org.gradle.initialization.VintageBuildModelController.scheduleRequestedTasks(VintageBuildModelController.java:76)
-	at org.gradle.internal.build.DefaultBuildLifecycleController$DefaultWorkGraphBuilder.addRequestedTasks(DefaultBuildLifecycleController.java:404)
-	at org.gradle.internal.buildtree.DefaultBuildTreeWorkPreparer.lambda$scheduleRequestedTasks$0(DefaultBuildTreeWorkPreparer.java:41)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$populateWorkGraph$7(DefaultBuildLifecycleController.java:189)
-	at org.gradle.internal.build.DefaultBuildWorkPreparer.populateWorkGraph(DefaultBuildWorkPreparer.java:42)
-	at org.gradle.internal.build.BuildOperationFiringBuildWorkPreparer$PopulateWorkGraph.populateTaskGraph(BuildOperationFiringBuildWorkPreparer.java:106)
-	at org.gradle.internal.build.BuildOperationFiringBuildWorkPreparer$PopulateWorkGraph.run(BuildOperationFiringBuildWorkPreparer.java:92)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:68)
-	at org.gradle.internal.build.BuildOperationFiringBuildWorkPreparer.populateWorkGraph(BuildOperationFiringBuildWorkPreparer.java:67)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.lambda$populateWorkGraph$8(DefaultBuildLifecycleController.java:189)
-	at org.gradle.internal.model.StateTransitionController.lambda$inState$1(StateTransitionController.java:99)
-	at org.gradle.internal.model.StateTransitionController.lambda$inState$2(StateTransitionController.java:114)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.inState(StateTransitionController.java:110)
-	at org.gradle.internal.model.StateTransitionController.inState(StateTransitionController.java:98)
-	at org.gradle.internal.build.DefaultBuildLifecycleController.populateWorkGraph(DefaultBuildLifecycleController.java:189)
-	at org.gradle.internal.build.DefaultBuildWorkGraphController$DefaultBuildWorkGraph.populateWorkGraph(DefaultBuildWorkGraphController.java:169)
-	at org.gradle.composite.internal.DefaultBuildController.populateWorkGraph(DefaultBuildController.java:76)
-	at org.gradle.composite.internal.DefaultIncludedBuildTaskGraph$DefaultBuildTreeWorkGraphBuilder.withWorkGraph(DefaultIncludedBuildTaskGraph.java:153)
-	at org.gradle.internal.buildtree.DefaultBuildTreeWorkPreparer.lambda$scheduleRequestedTasks$1(DefaultBuildTreeWorkPreparer.java:41)
-	at org.gradle.composite.internal.DefaultIncludedBuildTaskGraph$DefaultBuildTreeWorkGraph$1.run(DefaultIncludedBuildTaskGraph.java:209)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:29)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$1.execute(DefaultBuildOperationRunner.java:26)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.run(DefaultBuildOperationRunner.java:47)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor.run(DefaultBuildOperationExecutor.java:68)
-	at org.gradle.composite.internal.DefaultIncludedBuildTaskGraph$DefaultBuildTreeWorkGraph.scheduleWork(DefaultIncludedBuildTaskGraph.java:204)
-	at org.gradle.internal.buildtree.DefaultBuildTreeWorkPreparer.scheduleRequestedTasks(DefaultBuildTreeWorkPreparer.java:37)
-	at org.gradle.configurationcache.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1.apply(VintageBuildTreeWorkController.kt:36)
-	at org.gradle.configurationcache.VintageBuildTreeWorkController$scheduleAndRunRequestedTasks$1.apply(VintageBuildTreeWorkController.kt:35)
-	at org.gradle.composite.internal.DefaultIncludedBuildTaskGraph.withNewWorkGraph(DefaultIncludedBuildTaskGraph.java:112)
-	at org.gradle.configurationcache.VintageBuildTreeWorkController.scheduleAndRunRequestedTasks(VintageBuildTreeWorkController.kt:35)
-	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$scheduleAndRunTasks$1(DefaultBuildTreeLifecycleController.java:77)
-	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.lambda$runBuild$4(DefaultBuildTreeLifecycleController.java:120)
-	at org.gradle.internal.model.StateTransitionController.lambda$transition$6(StateTransitionController.java:169)
-	at org.gradle.internal.model.StateTransitionController.doTransition(StateTransitionController.java:266)
-	at org.gradle.internal.model.StateTransitionController.lambda$transition$7(StateTransitionController.java:169)
-	at org.gradle.internal.work.DefaultSynchronizer.withLock(DefaultSynchronizer.java:44)
-	at org.gradle.internal.model.StateTransitionController.transition(StateTransitionController.java:169)
-	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.runBuild(DefaultBuildTreeLifecycleController.java:117)
-	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:77)
-	at org.gradle.internal.buildtree.DefaultBuildTreeLifecycleController.scheduleAndRunTasks(DefaultBuildTreeLifecycleController.java:72)
-	at org.gradle.tooling.internal.provider.ExecuteBuildActionRunner.run(ExecuteBuildActionRunner.java:31)
-	at org.gradle.launcher.exec.ChainingBuildActionRunner.run(ChainingBuildActionRunner.java:35)
-	at org.gradle.internal.buildtree.ProblemReportingBuildActionRunner.run(ProblemReportingBuildActionRunner.java:49)
-	at org.gradle.launcher.exec.BuildOutcomeReportingBuildActionRunner.run(BuildOutcomeReportingBuildActionRunner.java:65)
-	at org.gradle.tooling.internal.provider.FileSystemWatchingBuildActionRunner.run(FileSystemWatchingBuildActionRunner.java:140)
-	at org.gradle.launcher.exec.BuildCompletionNotifyingBuildActionRunner.run(BuildCompletionNotifyingBuildActionRunner.java:41)
-	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.lambda$execute$0(RootBuildLifecycleBuildActionExecutor.java:40)
-	at org.gradle.composite.internal.DefaultRootBuildState.run(DefaultRootBuildState.java:123)
-	at org.gradle.launcher.exec.RootBuildLifecycleBuildActionExecutor.execute(RootBuildLifecycleBuildActionExecutor.java:40)
-	at org.gradle.internal.buildtree.InitDeprecationLoggingActionExecutor.execute(InitDeprecationLoggingActionExecutor.java:66)
-	at org.gradle.internal.buildtree.InitProblems.execute(InitProblems.java:36)
-	at org.gradle.internal.buildtree.DefaultBuildTreeContext.execute(DefaultBuildTreeContext.java:40)
-	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.lambda$execute$0(BuildTreeLifecycleBuildActionExecutor.java:71)
-	at org.gradle.internal.buildtree.BuildTreeState.run(BuildTreeState.java:60)
-	at org.gradle.launcher.exec.BuildTreeLifecycleBuildActionExecutor.execute(BuildTreeLifecycleBuildActionExecutor.java:71)
-	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$3.call(RunAsBuildOperationBuildActionExecutor.java:61)
-	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor$3.call(RunAsBuildOperationBuildActionExecutor.java:57)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:200)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$CallableBuildOperationWorker.execute(DefaultBuildOperationRunner.java:195)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:66)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner$2.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:157)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.execute(DefaultBuildOperationRunner.java:59)
-	at org.gradle.internal.operations.DefaultBuildOperationRunner.call(DefaultBuildOperationRunner.java:53)
-	at org.gradle.internal.operations.DefaultBuildOperationExecutor.call(DefaultBuildOperationExecutor.java:73)
-	at org.gradle.launcher.exec.RunAsBuildOperationBuildActionExecutor.execute(RunAsBuildOperationBuildActionExecutor.java:57)
-	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.lambda$execute$0(RunAsWorkerThreadBuildActionExecutor.java:36)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.withLocks(DefaultWorkerLeaseService.java:264)
-	at org.gradle.internal.work.DefaultWorkerLeaseService.runAsWorkerThread(DefaultWorkerLeaseService.java:128)
-	at org.gradle.launcher.exec.RunAsWorkerThreadBuildActionExecutor.execute(RunAsWorkerThreadBuildActionExecutor.java:36)
-	at org.gradle.tooling.internal.provider.continuous.ContinuousBuildActionExecutor.execute(ContinuousBuildActionExecutor.java:110)
-	at org.gradle.tooling.internal.provider.SubscribableBuildActionExecutor.execute(SubscribableBuildActionExecutor.java:64)
-	at org.gradle.internal.session.DefaultBuildSessionContext.execute(DefaultBuildSessionContext.java:46)
-	at org.gradle.tooling.internal.provider.BuildSessionLifecycleBuildActionExecuter$ActionImpl.apply(BuildSessionLifecycleBuildActionExecuter.java:92)
-	at org.gradle.tooling.internal.provider.BuildSessionLifecycleBuildActionExecuter$ActionImpl.apply(BuildSessionLifecycleBuildActionExecuter.java:80)
-	at org.gradle.internal.session.BuildSessionState.run(BuildSessionState.java:71)
-	at org.gradle.tooling.internal.provider.BuildSessionLifecycleBuildActionExecuter.execute(BuildSessionLifecycleBuildActionExecuter.java:62)
-	at org.gradle.tooling.internal.provider.BuildSessionLifecycleBuildActionExecuter.execute(BuildSessionLifecycleBuildActionExecuter.java:41)
-	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:64)
-	at org.gradle.tooling.internal.provider.StartParamsValidatingActionExecuter.execute(StartParamsValidatingActionExecuter.java:32)
-	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:51)
-	at org.gradle.tooling.internal.provider.SessionFailureReportingActionExecuter.execute(SessionFailureReportingActionExecuter.java:39)
-	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:47)
-	at org.gradle.tooling.internal.provider.SetupLoggingActionExecuter.execute(SetupLoggingActionExecuter.java:31)
-	at org.gradle.launcher.daemon.server.exec.ExecuteBuild.doBuild(ExecuteBuild.java:65)
-	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
-	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
-	at org.gradle.launcher.daemon.server.exec.WatchForDisconnection.execute(WatchForDisconnection.java:39)
-	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
-	at org.gradle.launcher.daemon.server.exec.ResetDeprecationLogger.execute(ResetDeprecationLogger.java:29)
-	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
-	at org.gradle.launcher.daemon.server.exec.RequestStopIfSingleUsedDaemon.execute(RequestStopIfSingleUsedDaemon.java:35)
-	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
-	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:78)
-	at org.gradle.launcher.daemon.server.exec.ForwardClientInput$2.create(ForwardClientInput.java:75)
-	at org.gradle.util.internal.Swapper.swap(Swapper.java:38)
-	at org.gradle.launcher.daemon.server.exec.ForwardClientInput.execute(ForwardClientInput.java:75)
-	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
-	at org.gradle.launcher.daemon.server.exec.LogAndCheckHealth.execute(LogAndCheckHealth.java:53)
-	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
-	at org.gradle.launcher.daemon.server.exec.LogToClient.doBuild(LogToClient.java:63)
-	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
-	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
-	at org.gradle.launcher.daemon.server.exec.EstablishBuildEnvironment.doBuild(EstablishBuildEnvironment.java:84)
-	at org.gradle.launcher.daemon.server.exec.BuildCommandOnly.execute(BuildCommandOnly.java:37)
-	at org.gradle.launcher.daemon.server.api.DaemonCommandExecution.proceed(DaemonCommandExecution.java:104)
-	at org.gradle.launcher.daemon.server.exec.StartBuildOrRespondWithBusy$1.run(StartBuildOrRespondWithBusy.java:52)
-	at org.gradle.launcher.daemon.server.DaemonStateCoordinator$1.run(DaemonStateCoordinator.java:297)
-	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
-	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
-Caused by: com.android.builder.errors.EvalIssueException: SDK location not found. Define a valid SDK location with an ANDROID_HOME environment variable or by setting the sdk.dir path in your project's local properties file at '/codebuild/output/src3724292308/src/github.com/Huseny/task_manager/project_bundle/repo/local.properties'.
-	at com.android.builder.errors.IssueReporter.reportError(IssueReporter.kt:114)
-	at com.android.builder.errors.IssueReporter.reportError$default(IssueReporter.kt:110)
-	at com.android.build.gradle.internal.SdkLocator.getSdkLocation(SdkLocator.kt:247)
-	at com.android.build.gradle.internal.SdkDirectLoadingStrategy.loadSdkComponents(SdkDirectLoadingStrategy.kt:97)
-	at com.android.build.gradle.internal.SdkDirectLoadingStrategy.init(SdkDirectLoadingStrategy.kt:92)
-	at com.android.build.gradle.internal.SdkDirectLoadingStrategy.access$init(SdkDirectLoadingStrategy.kt:46)
-	at com.android.build.gradle.internal.SdkDirectLoadingStrategy$components$2.invoke(SdkDirectLoadingStrategy.kt:71)
-	at com.android.build.gradle.internal.SdkDirectLoadingStrategy$components$2.invoke(SdkDirectLoadingStrategy.kt:70)
-	at kotlin.SynchronizedLazyImpl.getValue(LazyJVM.kt:74)
-	at com.android.build.gradle.internal.SdkDirectLoadingStrategy.getComponents(SdkDirectLoadingStrategy.kt:70)
-	at com.android.build.gradle.internal.SdkDirectLoadingStrategy.loadedSuccessfully(SdkDirectLoadingStrategy.kt:178)
-	at com.android.build.gradle.internal.SdkLoadingStrategy.getAndroidJar(SdkLoadingStrategy.kt:30)
-	at com.android.build.gradle.internal.SdkComponentsBuildService$VersionedSdkLoader$androidJarProvider$1.call(SdkComponents.kt:225)
-	at com.android.build.gradle.internal.SdkComponentsBuildService$VersionedSdkLoader$androidJarProvider$1.call(SdkComponents.kt:224)
-	at org.gradle.api.internal.provider.DefaultProvider.calculateOwnValue(DefaultProvider.java:72)
-	at org.gradle.api.internal.provider.AbstractMinimalProvider.calculateValue(AbstractMinimalProvider.java:115)
-	at org.gradle.api.internal.provider.FlatMapProvider.calculateOwnValue(FlatMapProvider.java:53)
-	at org.gradle.api.internal.provider.AbstractMinimalProvider.getOrNull(AbstractMinimalProvider.java:105)
-	at com.android.build.gradle.internal.AndroidTestTaskManager$createMockableJarTask$1.call(AndroidTestTaskManager.kt:464)
-	at com.android.build.gradle.internal.AndroidTestTaskManager$createMockableJarTask$1.call(AndroidTestTaskManager.kt:460)
-	at org.gradle.util.internal.GUtil.uncheckedCall(GUtil.java:437)
-	at org.gradle.util.internal.DeferredUtil.unpackNestableDeferred(DeferredUtil.java:83)
-	at org.gradle.api.internal.file.collections.UnpackingVisitor.add(UnpackingVisitor.java:90)
-	at org.gradle.api.internal.file.collections.DefaultConfigurableFileCollection$UnresolvedItemsCollector.visitContents(DefaultConfigurableFileCollection.java:593)
-	at org.gradle.api.internal.file.collections.DefaultConfigurableFileCollection.visitChildren(DefaultConfigurableFileCollection.java:440)
-	at org.gradle.api.internal.file.CompositeFileCollection.visitDependencies(CompositeFileCollection.java:102)
-	at org.gradle.api.internal.file.collections.DefaultConfigurableFileCollection.visitDependencies(DefaultConfigurableFileCollection.java:446)
-	at org.gradle.api.internal.AbstractTaskDependencyContainerVisitingContext.add(AbstractTaskDependencyContainerVisitingContext.java:46)
-	at org.gradle.api.internal.file.AbstractFileCollection.lambda$getBuildDependencies$0(AbstractFileCollection.java:99)
-	at org.gradle.api.internal.tasks.DefaultTaskDependency.visitDependencies(DefaultTaskDependency.java:151)
-	at org.gradle.api.internal.AbstractTaskDependencyContainerVisitingContext.add(AbstractTaskDependencyContainerVisitingContext.java:46)
-	at org.gradle.api.internal.artifacts.ivyservice.resolveengine.artifact.LocalFileDependencyBackedArtifactSet.visitDependencies(LocalFileDependencyBackedArtifactSet.java:186)
-	at org.gradle.api.internal.AbstractTaskDependencyContainerVisitingContext.add(AbstractTaskDependencyContainerVisitingContext.java:46)
-	at org.gradle.api.internal.artifacts.ivyservice.resolveengine.artifact.DefaultSelectedArtifactSet.visitDependencies(DefaultSelectedArtifactSet.java:47)
-	at org.gradle.api.internal.artifacts.configurations.ResolutionBackedFileCollection.visitDependencies(ResolutionBackedFileCollection.java:59)
-	at org.gradle.api.internal.tasks.CachingTaskDependencyResolveContext$TaskGraphImpl.getNodeValues(CachingTaskDependencyResolveContext.java:103)
-	at org.gradle.internal.graph.CachingDirectedGraphWalker$GraphWithEmptyEdges.getNodeValues(CachingDirectedGraphWalker.java:213)
-	at org.gradle.internal.graph.CachingDirectedGraphWalker.doSearch(CachingDirectedGraphWalker.java:121)
-	at org.gradle.internal.graph.CachingDirectedGraphWalker.findValues(CachingDirectedGraphWalker.java:73)
-	at org.gradle.api.internal.tasks.CachingTaskDependencyResolveContext.getDependencies(CachingTaskDependencyResolveContext.java:66)
-	... 143 more
-
-
-BUILD FAILED in 48s
-
-[FAILURE] run_tests.sh failed
-
-==================== POST-BUILD CLEANUP ====================
-
---- Docker Service Logs ---
-test-runner-1  | ============================================
-test-runner-1  |   RoadRunner Dispatch — Test Suite
-test-runner-1  | ============================================
-test-runner-1  | 
-test-runner-1  | --- Unit Tests (JVM) ---
-test-runner-1  | Downloading https://services.gradle.org/distributions/gradle-8.7-bin.zip
-test-runner-1  | ............10%.............20%.............30%.............40%............50%.............60%.............70%.............80%.............90%............100%
-test-runner-1  | 
-test-runner-1  | Welcome to Gradle 8.7!
-test-runner-1  | 
-test-runner-1  | Here are the highlights of this release:
-test-runner-1  |  - Compiling and testing with Java 22
-test-runner-1  |  - Cacheable Groovy script compilation
-test-runner-1  |  - New methods in lazy collection properties
-test-runner-1  | 
-test-runner-1  | For more details see https://docs.gradle.org/8.7/release-notes.html
-test-runner-1  | 
-test-runner-1  | To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.7/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
-test-runner-1  | Daemon will be stopped at the end of the build 
- Container roadrunner-console Stopping 
- Container repo-test-runner-1 Stopping 
- Container repo-test-runner-1 Stopped 
- Container repo-test-runner-1 Removing 
- Container roadrunner-console Stopped 
- Container roadrunner-console Removing 
- Container roadrunner-console Removed 
- Container repo-test-runner-1 Removed 
- Network repo_default Removing 
- Network repo_default Removed 
-
-Build process finished at Wed Apr 15 19:24:14 UTC 2026
