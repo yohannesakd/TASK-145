@@ -21,6 +21,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: sdk-base
+    environment:
+      IN_REPO_TEST_RUNNER: "1"
     volumes:
       - .:/project
     working_dir: /project

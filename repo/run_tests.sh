@@ -16,9 +16,9 @@ JVM_STATUS="NOT RUN"
 LINT_STATUS="NOT RUN"
 INSTRUMENTED_STATUS="NOT RUN"
 
-# If running on the host, delegate to Docker for JVM tests,
-# then run instrumented tests locally if a device/emulator is available.
-if [ ! -f /.dockerenv ]; then
+# Outside the repo's dedicated test-runner container, delegate JVM/lint to Docker
+# and only run instrumented tests locally.
+if [ "${IN_REPO_TEST_RUNNER:-}" != "1" ]; then
     echo ""
     echo "--- JVM Tests + Lint (via Docker) ---"
     if docker compose run --rm --build test-runner; then
