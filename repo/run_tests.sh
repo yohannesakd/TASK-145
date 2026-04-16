@@ -71,10 +71,29 @@ fi
 
 # Inside Docker: run JVM tests + lint only
 
-# Fix sdk.dir — the host's local.properties is bind-mounted and points to a
-# macOS path that doesn't exist in the container.  Overwrite with ANDROID_HOME.
-if [ -n "${ANDROID_HOME:-}" ]; then
-    echo "sdk.dir=${ANDROID_HOME}" > local.properties
+# Fix sdk.dir — the host's local.properties may be bind-mounted and point to a
+# host-only path. Overwrite it with a container-visible SDK path.
+SDK_DIR="${ANDROID_HOME:-}"
+if [ -z "$SDK_DIR" ] && [ -n "${ANDROID_SDK_ROOT:-}" ]; then
+    SDK_DIR="$ANDROID_SDK_ROOT"
+fi
+if [ -z "$SDK_DIR" ]; then
+    for candidate in /opt/android-sdk /opt/android/sdk /usr/local/android-sdk /usr/lib/android-sdk; do
+        if [ -d "$candidate" ]; then
+            SDK_DIR="$candidate"
+            break
+        fi
+    done
+fi
+
+if [ -n "$SDK_DIR" ]; then
+    export ANDROID_HOME="$SDK_DIR"
+    export ANDROID_SDK_ROOT="$SDK_DIR"
+    echo "sdk.dir=${SDK_DIR}" > local.properties
+else
+    echo "ERROR: Android SDK not found inside container."
+    echo "  Expected ANDROID_HOME/ANDROID_SDK_ROOT or a standard path like /opt/android-sdk."
+    exit 1
 fi
 
 echo ""
