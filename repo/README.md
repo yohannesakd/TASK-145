@@ -17,24 +17,34 @@ No server, no web UI, no remote database. All data persists locally using Room (
 
 ## Run, Access, Verify, and Test
 
+This is the single canonical workflow. Docker handles building and JVM testing. A connected Android device or emulator handles the APK install, manual verification, and instrumented tests.
+
+> **Docker containment:** Docker provides the entire build toolchain (JDK 17, Android SDK 34) and runs all JVM unit tests and lint — no host-side SDK or JDK installation required for these steps. Instrumented tests (Espresso UI, Room integration, ViewModel integration) are the single exception: they require a real Android runtime (device or emulator) because Docker cannot emulate the Android OS. The Docker-contained tier (build + JVM tests + lint) is independently sufficient for CI validation.
+
 ### Prerequisites
 
-- JDK 17–21
-- Android SDK 34 (with `ANDROID_HOME` set)
-- An Android emulator (API 26+) or physical device with USB debugging enabled
+- Docker and Docker Compose
+- An Android emulator (API 26+) or physical device with USB debugging enabled (for instrumented tests and APK install only)
 - `adb` on the host PATH (included with Android SDK Platform-Tools)
 
-### Step 1: Build the APK
+> **Without Docker:** If you prefer a fully local build, install JDK 17–21 and Android SDK 34, then substitute `./gradlew assembleDebug` for the Docker build step and `./gradlew test` for the Docker test step. All other steps remain the same.
+
+### Step 1: Build the APK (Docker)
 
 ```bash
-./gradlew assembleDebug
-# APK output: app/build/outputs/apk/debug/app-debug.apk
+docker compose up builder
+# After build completes, the APK is served at:
+#   http://localhost:8000/app-debug.apk
 ```
 
 ### Step 2: Install and launch
 
 ```bash
-adb install app/build/outputs/apk/debug/app-debug.apk
+# Download the APK from the Docker builder
+curl -o app-debug.apk http://localhost:8000/app-debug.apk
+
+# Install and launch (device or emulator must be connected)
+adb install app-debug.apk
 adb shell am start -n com.roadrunner.dispatch/.MainActivity
 ```
 
@@ -69,34 +79,40 @@ After launch, the app opens to the **Login** screen. Use one of the seeded crede
 ### Step 4: Run all tests
 
 ```bash
-# Single command: JVM unit tests + lint + instrumented tests
+# Single command: JVM tests + lint (Docker) → instrumented tests (device)
 ./run_tests.sh
 ```
 
 Or run each tier individually:
 
 ```bash
-./gradlew test                              # JVM unit tests
-./gradlew lint                              # Lint checks
+docker compose run test-runner              # JVM unit tests + lint (Docker)
 ./gradlew connectedDebugAndroidTest         # Instrumented tests (device/emulator)
 ```
 
-Use `--jvm-only` to skip the device-dependent instrumented tier:
+Use `--jvm-only` to run only the Docker-contained tier (skips instrumented tests):
 
 ```bash
 ./run_tests.sh --jvm-only
 ```
 
-By default, `./run_tests.sh` exits non-zero if no device/emulator is connected. Use `--jvm-only` to explicitly skip instrumented tests when no device is available.
+By default, `./run_tests.sh` exits non-zero if no device/emulator is connected for instrumented tests. Use `--jvm-only` to explicitly skip the device-dependent tier.
 
 ### What runs where
 
 | Scope | Environment | Command |
 |-------|------------|---------|
-| APK build | Host | `./gradlew assembleDebug` |
-| JVM unit tests (354 cases) | Host (JVM) | `./gradlew test` |
-| Lint | Host (JVM) | `./gradlew lint` |
-| Instrumented tests (335 cases) | Device/emulator | `./gradlew connectedDebugAndroidTest` |
+| APK build | Docker | `docker compose up builder` |
+| JVM unit tests (354 cases) | Docker | `docker compose run test-runner` |
+| Lint | Docker | included in test-runner |
+| Instrumented tests (335 cases) | Host device/emulator | `./gradlew connectedDebugAndroidTest` |
+
+### Docker Services
+
+| Service | Purpose |
+|---------|---------|
+| `builder` | Builds the debug APK inside a containerized Android SDK, runs JVM tests and lint, then serves the APK via HTTP on port 8000 |
+| `test-runner` | Mounts the project and executes `./run_tests.sh` (JVM unit tests + lint) |
 
 ---
 
@@ -293,5 +309,5 @@ On first launch:
 - Database: Room 2.6.0 (SQLite)
 - UI: Material Design 3, ConstraintLayout, Navigation Component
 - Security: AndroidX Security Crypto 1.1.0-alpha06
-- Build: JDK 17–21, Android SDK 34
-- Runtime: Android device/emulator with API 26+, `adb` on the host PATH
+- Build dependencies: Docker + Docker Compose (provides JDK + Android SDK); or JDK 17–21 + Android SDK 34 for local builds
+- Runtime dependencies: Android device/emulator with API 26+ and `adb` on the host PATH (for APK install, manual verification, and instrumented tests)
