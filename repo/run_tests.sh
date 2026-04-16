@@ -2,9 +2,11 @@
 set -euo pipefail
 
 JVM_ONLY=false
+REQUIRE_DEVICE=false
 for arg in "$@"; do
     case "$arg" in
         --jvm-only) JVM_ONLY=true ;;
+        --require-device|--full) REQUIRE_DEVICE=true ;;
     esac
 done
 
@@ -42,10 +44,17 @@ if [ "${IN_REPO_TEST_RUNNER:-}" != "1" ]; then
                 INSTRUMENTED_STATUS="FAILED"
             fi
         else
-            echo "ERROR: No device/emulator detected."
-            echo "  Connect a device or start an emulator and retry, or use"
-            echo "  --jvm-only to run only Docker-contained JVM tests and lint."
-            INSTRUMENTED_STATUS="FAILED (no device)"
+            if [ "$REQUIRE_DEVICE" = true ]; then
+                echo "ERROR: No device/emulator detected."
+                echo "  Connect a device or start an emulator and retry, or use"
+                echo "  --jvm-only to run only Docker-contained JVM tests and lint."
+                INSTRUMENTED_STATUS="FAILED (no device)"
+            else
+                echo "SKIPPED: No device/emulator detected."
+                echo "  Connect a device or start an emulator to run instrumented tests, or use"
+                echo "  --require-device to fail when no device is available."
+                INSTRUMENTED_STATUS="SKIPPED (no device)"
+            fi
         fi
     fi
 
@@ -101,11 +110,19 @@ fi
 
 echo ""
 echo "--- Unit Tests (JVM) ---"
-./gradlew test --no-daemon --stacktrace
+if command -v gradle >/dev/null 2>&1; then
+    gradle test --no-daemon --stacktrace
+else
+    ./gradlew test --no-daemon --stacktrace
+fi
 
 echo ""
 echo "--- Lint Checks ---"
-./gradlew lint --no-daemon
+if command -v gradle >/dev/null 2>&1; then
+    gradle lint --no-daemon
+else
+    ./gradlew lint --no-daemon
+fi
 
 echo ""
 echo "============================================"

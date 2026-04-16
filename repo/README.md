@@ -96,7 +96,7 @@ Use `--jvm-only` to run only the Docker-contained tier (skips instrumented tests
 ./run_tests.sh --jvm-only
 ```
 
-By default, `./run_tests.sh` exits non-zero if no device/emulator is connected for instrumented tests. Use `--jvm-only` to explicitly skip the device-dependent tier.
+By default, `./run_tests.sh` skips instrumented tests if no device/emulator is connected and still validates the Docker-contained JVM/lint tier. Use `--require-device` (or `--full`) to make missing device/emulator a failure.
 
 ### What runs where
 
@@ -106,6 +106,12 @@ By default, `./run_tests.sh` exits non-zero if no device/emulator is connected f
 | JVM unit tests (354 cases) | Docker | `docker compose run test-runner` |
 | Lint | Docker | included in test-runner |
 | Instrumented tests (335 cases) | Host device/emulator | `./gradlew connectedDebugAndroidTest` |
+
+Strict device-required mode:
+
+```bash
+./run_tests.sh --require-device
+```
 
 ### Docker Services
 

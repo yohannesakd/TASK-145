@@ -2,22 +2,27 @@
 FROM eclipse-temurin:17-jdk-jammy AS sdk-base
 
 ENV ANDROID_HOME=/opt/android-sdk
-ENV PATH="${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/build-tools/34.0.0:${PATH}"
-
-# Install required system packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-        curl \
-        unzip \
-        git \
-    && rm -rf /var/lib/apt/lists/*
+ENV GRADLE_VERSION=8.7
+ENV GRADLE_HOME=/opt/gradle-${GRADLE_VERSION}
+ENV PATH="${GRADLE_HOME}/bin:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/build-tools/34.0.0:${PATH}"
 
 # Download and install Android command-line tools
 RUN mkdir -p ${ANDROID_HOME}/cmdline-tools && \
     curl -fsSL https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip \
         -o /tmp/cmdline-tools.zip && \
-    unzip -q /tmp/cmdline-tools.zip -d ${ANDROID_HOME}/cmdline-tools && \
+    cd ${ANDROID_HOME}/cmdline-tools && \
+    jar xf /tmp/cmdline-tools.zip && \
     mv ${ANDROID_HOME}/cmdline-tools/cmdline-tools ${ANDROID_HOME}/cmdline-tools/latest && \
+    chmod +x ${ANDROID_HOME}/cmdline-tools/latest/bin/* && \
     rm /tmp/cmdline-tools.zip
+
+# Download and install Gradle so the test-runner does not depend on wrapper downloads.
+RUN curl -fsSL https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip \
+        -o /tmp/gradle.zip && \
+    cd /opt && \
+    jar xf /tmp/gradle.zip && \
+    chmod +x ${GRADLE_HOME}/bin/* && \
+    rm /tmp/gradle.zip
 
 # Accept licences and install SDK components
 RUN yes | sdkmanager --licenses > /dev/null 2>&1 && \
@@ -35,9 +40,12 @@ RUN ARCH="$(uname -m)" && \
     if [ "$ARCH" = "aarch64" ]; then \
         curl -fsSL -L https://github.com/lzhiyong/android-sdk-tools/releases/download/34.0.3/android-sdk-tools-static-aarch64.zip \
             -o /tmp/sdk-tools-arm64.zip && \
-        unzip -q -o -j /tmp/sdk-tools-arm64.zip build-tools/aapt2 -d ${ANDROID_HOME}/build-tools/34.0.0/ && \
+        mkdir -p /tmp/sdk-tools-arm64 && \
+        cd /tmp/sdk-tools-arm64 && \
+        jar xf /tmp/sdk-tools-arm64.zip && \
+        cp /tmp/sdk-tools-arm64/build-tools/aapt2 ${ANDROID_HOME}/build-tools/34.0.0/aapt2 && \
         chmod +x ${ANDROID_HOME}/build-tools/34.0.0/aapt2 && \
-        rm /tmp/sdk-tools-arm64.zip; \
+        rm -rf /tmp/sdk-tools-arm64 /tmp/sdk-tools-arm64.zip; \
     fi
 
 WORKDIR /project
@@ -47,7 +55,7 @@ FROM sdk-base AS builder
 COPY . .
 
 RUN chmod +x gradlew && \
-    ./gradlew assembleDebug test lint --no-daemon --stacktrace
+    gradle assembleDebug test lint --no-daemon --stacktrace
 
 # Copy the APK to a well-known output location
 RUN mkdir -p /output && \
